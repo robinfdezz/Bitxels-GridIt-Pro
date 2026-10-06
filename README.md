@@ -1,47 +1,235 @@
-# GridIt Pro - Adobe Illustrator CEP Extension
+<div align="center">
 
-Extension profesional para Adobe Illustrator especializada en generación paramétrica de cuadrículas de construcción de logotipos, proyección isométrica y proporciones áureas.
+  <img src="client/assets/bitxels.svg" alt="Bitxels Grid Logo" width="280"/>
+
+  <br/>
+  <br/>
+
+  # Bitxels Grid
+  ### Generador Profesional de Mallas y Gu&iacute;as de Logotipos para Adobe Illustrator
+
+  [![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-CC%202022--2026%2B-FF9A00?style=for-the-badge&logo=adobeillustrator&logoColor=white)](https://www.adobe.com/products/illustrator.html)
+  [![CEP Runtime](https://img.shields.io/badge/CEP%20Runtime-9.0--12.0-00C8FF?style=for-the-badge)](https://github.com/Adobe-CEP)
+  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.1.5--alpha-3b82f6?style=for-the-badge)](docs/versions.md)
+  [![Licencia](https://img.shields.io/badge/Licencia-MIT-10b981?style=for-the-badge)](LICENSE)
+  [![Platform](https://img.shields.io/badge/Plataforma-Windows%20%7C%20macOS-gray?style=for-the-badge)](https://github.com/robinfdezz/Bitxels-GridIt-Pro)
+
+  <p align="center">
+    <b>Bitxels Grid</b> es una extensi&oacute;n CEP (Common Extensibility Platform) de alta precisi&oacute;n dise&ntilde;ada para dise&ntilde;adores de identidad visual, creadores de isotipos y arquitectos de marca. Automatiza la construcci&oacute;n de ret&iacute;culas ortogonales, perspectivas isom&eacute;tricas y proporciones &aacute;ureas directamente como <b>gu&iacute;as nativas vectoriales</b> en Adobe Illustrator.
+  </p>
+
+  <p align="center">
+    <a href="#-caracter%C3%ADsticas-principales">Caracter&iacute;sticas</a> &bull;
+    <a href="#-instalaci%C3%B3n-y-uso">Instalaci&oacute;n</a> &bull;
+    <a href="#-estructura-del-proyecto">Estructura</a> &bull;
+    <a href="#-arquitectura-t%C3%A9cnica">Arquitectura</a> &bull;
+    <a href="#-hoja-de-ruta-roadmap">Roadmap</a> &bull;
+    <a href="#-licencia">Licencia</a>
+  </p>
+</div>
 
 ---
 
-## 🚀 Estructura del Proyecto
+## âš¡ &iquest;Por qu&eacute; Bitxels Grid?
 
-- [CSXS/manifest.xml](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/CSXS/manifest.xml): Definición del panel CEP, geometrías y versiones de Illustrator soportadas (CC 2020 a CC 2026+).
-- [.debug](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/.debug): Configuración de puerto de depuración remota Chrome DevTools (`localhost:8088`).
-- [client/index.html](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/client/index.html): Estructura del panel HTML5 con tema oscuro y pestañas interactivas.
-- [client/css/styles.css](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/client/css/styles.css): Sistema de diseño visual oscuro inspirado en Adobe Spectrum.
-- [client/js/main.js](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/client/js/main.js): Lógica de interacción frontend y llamadas a ExtendScript.
-- [client/js/CSInterface.js](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/client/js/CSInterface.js): Puente de comunicación Adobe CEP con soporte de simulación para navegadores.
-- [jsx/hostScript.jsx](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/jsx/hostScript.jsx): Motor de backend ExtendScript en Illustrator (creación de capas, cálculo de límites y guías).
-- **Documentación:**
-  - [docs/architecture.md](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/docs/architecture.md): Arquitectura detallada, ciclo de vida CEP y flujo de datos.
-  - [docs/context.md](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/docs/context.md): Contexto y justificación del producto.
-  - [docs/versions.md](file:///C:/Users/pc/.gemini/antigravity-ide/scratch/gridit-cep-plugin/docs/versions.md): Historial de versiones y Roadmap.
+Construir ret&iacute;culas de logotipos manualmente en Illustrator suele tomar entre 5 y 10 minutos por mesa de trabajo: duplicar trazos con *Transform Each*, calcular rotaciones a 30&deg; para isom&eacute;trico, agrupar, bloquear y convertir a gu&iacute;as (`Ctrl + 5`).
+
+Con **Bitxels Grid**, seleccionas tus par&aacute;metros y en **menos de 1 segundo**:
+- Se genera la ret&iacute;cula matem&aacute;tica calculada al subp&iacute;xel.
+- Se a&iacute;sla en una capa dedicada (`GridIt_Custom_Layer`).
+- Se convierte autom&aacute;ticamente en gu&iacute;as nativas cian bloqueables.
+- No interfiere con el arte ni las capas activas de tu cliente.
 
 ---
 
-## 🛠️ Instalación y Pruebas en Adobe Illustrator (Windows)
+## âœ¨ Caracter&iacute;sticas Principales
 
-### Paso 1: Habilitar el Modo Debug de CEP en el Registro de Windows
-Para que Illustrator cargue extensiones sin firmar durante el desarrollo, ejecuta en PowerShell como Administrador:
+| Malla / Geometr&iacute;a | Estado | Descripci&oacute;n T&eacute;cnica |
+| :--- | :---: | :--- |
+| **Cuadrada (Cartesiana)** | ðŸŸ¢ Activo | Matriz ortogonal param&eacute;trica con soporte para diagonales a 45&deg; y 135&deg;. |
+| **Isom&eacute;trica (Triaxial)** | ðŸŸ¢ Activo | Proyecci&oacute;n axonom&eacute;trica de 30&deg; / 60&deg; calculada trigonom&eacute;tricamente para iconos y 3D. |
+| **Raz&oacute;n &Aacute;urea (&phi; 1.618)** | ðŸŸ¢ Activo | Paquete conc&eacute;ntrico de c&iacute;rculos con la serie de Fibonacci (8, 13, 21, 34, 55, 89) y cruz central. |
+| **Hexagonal (Panal)** | ðŸŸ¡ *Pr&oacute;x.* | Geometr&iacute;a modular de 6 caras para patrones y logomarcas tecnol&oacute;gicas. |
+| **Construcci&oacute;n de Puntos & Anclas** | ðŸŸ¡ *Pr&oacute;x.* | Exportador de cotas visuales con manejadores b&eacute;zier para manuales de marca. |
+| **&Aacute;rea de Reserva (Clearspace)** | ðŸŸ¡ *Pr&oacute;x.* | Zona de exclusi&oacute;n perimetral autom&aacute;tica basada en el valor `x` del isotipo. |
+
+> ðŸ’¡ **Nota Visual:** Las funciones en desarrollo est&aacute;n atenuadas al **20% de opacidad** en la interfaz para mantener total transparencia visual sobre lo que est&aacute; operativo.
+
+---
+
+## ðŸŽ¨ Sistema de Dise&ntilde;o Visual (Dark UI)
+
+Inspirado en la est&eacute;tica moderna de paneles oscuros profesionales:
+- **Tarjeta Flotante:** Fondo carb&oacute;n mate (`#181818`), esquinas redondeadas de 14px y bordes sutiles.
+- **Selectores P&iacute;ldora:** Segmentos de navegaci&oacute;n r&aacute;pida con transiciones fluidas.
+- **Sliders en Tiempo Real:** Controles de espaciado con retroalimentaci&oacute;n num&eacute;rica continua al instante.
+- **Acento Azul El&eacute;ctrico:** Botones primarios destacados con gradiente (`#4c8bf7` &rarr; `#286beb`) y sombras de iluminaci&oacute;n.
+
+---
+
+## ðŸš€ Instalaci&oacute;n y Uso
+
+### Prerrequisitos
+- **Adobe Illustrator** CC 2022 (v26.0) hasta CC 2026+ (v30.x+) en Windows o macOS.
+
+---
+
+### Paso 1: Habilitar el Modo Desarrollador de CEP
+
+Dado que la extensi&oacute;n est&aacute; en desarrollo local sin firma digital criptogr&aacute;fica de Adobe, es necesario activar `PlayerDebugMode`:
+
+#### En Windows (PowerShell como Administrador):
 ```powershell
-# Para Illustrator CC 2020 a CC 2026 (CEP 9, 10 y 11)
-reg add "HKEY_CURRENT_USER\Software\Adobe\CSXS.9" /v PlayerDebugMode /t REG_SZ /d "1" /f
-reg add "HKEY_CURRENT_USER\Software\Adobe\CSXS.10" /v PlayerDebugMode /t REG_SZ /d "1" /f
-reg add "HKEY_CURRENT_USER\Software\Adobe\CSXS.11" /v PlayerDebugMode /t REG_SZ /d "1" /f
+# Habilitar PlayerDebugMode en versiones CEP 9 a 14 (Illustrator 2022 a 2026+)
+9..14 | ForEach-Object {
+    $key = "HKCU:\Software\Adobe\CSXS.$_"
+    if (-not (Test-Path $key)) { New-Item -Path $key -Force | Out-Null }
+    Set-ItemProperty -Path $key -Name "PlayerDebugMode" -Value "1" -Type String -Force
+}
 ```
 
-### Paso 2: Crear el Enlace Simbólico en la Carpeta de Extensiones de CEP
-Copia o vincula simbólicamente la carpeta del plugin a la ruta de extensiones de Adobe:
+#### En macOS (Terminal):
+```bash
+defaults write com.adobe.CSXS.9 PlayerDebugMode 1
+defaults write com.adobe.CSXS.10 PlayerDebugMode 1
+defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+defaults write com.adobe.CSXS.12 PlayerDebugMode 1
+```
+
+---
+
+### Paso 2: Instalar la Extensi&oacute;n
+
+Clona o enlaza este repositorio en la carpeta global de extensiones de Adobe CEP:
+
+#### En Windows (PowerShell):
 ```powershell
-# Crear la carpeta de extensiones si no existe
+# 1. Crear el directorio de extensiones si no existe
 New-Item -ItemType Directory -Force -Path "$env:APPDATA\Adobe\CEP\extensions"
 
-# Crear enlace simbólico (o copiar la carpeta)
-New-Item -ItemType SymbolicLink -Path "$env:APPDATA\Adobe\CEP\extensions\gridit-cep-plugin" -Target "C:\Users\pc\.gemini\antigravity-ide\scratch\gridit-cep-plugin"
+# 2. Clonar el repositorio directamente dentro
+cd "$env:APPDATA\Adobe\CEP\extensions"
+git clone https://github.com/robinfdezz/Bitxels-GridIt-Pro.git bitxels-grid
 ```
+
+*(O crea un enlace simb&oacute;lico apuntando a tu carpeta actual de desarrollo).*
+
+#### En macOS:
+```bash
+cd ~/Library/Application\ Support/Adobe/CEP/extensions/
+git clone https://github.com/robinfdezz/Bitxels-GridIt-Pro.git bitxels-grid
+```
+
+---
 
 ### Paso 3: Abrir en Adobe Illustrator
 1. Inicia o reinicia **Adobe Illustrator**.
-2. Ve al menú superior: **Ventana > Extensiones > GridIt Pro** (*Window > Extensions > GridIt Pro*).
-3. Abre un documento nuevo y presiona **Generate Guides**.
+2. Dir&iacute;gete al men&uacute; superior:
+   ```text
+   Ventana > Extensiones > Bitxels Grid
+   (Window > Extensions > Bitxels Grid)
+   ```
+3. Con un documento abierto, selecciona el tipo de malla (Cuadrada, Isom&eacute;trica o Raz&oacute;n &Aacute;urea), ajusta el espaciado y haz clic en **Hacer Gu&iacute;as** o **Generar**.
+
+---
+
+## ðŸ› ï¸ Depuraci&oacute;n y Modo Developer
+
+Bitxels Grid incluye soporte preconfigurado para **Chrome DevTools**:
+1. Con Illustrator y el panel abiertos, entra en Google Chrome a:
+   ```text
+   http://localhost:8088
+   ```
+2. Haz clic en el enlace del panel para acceder a la consola, inspeccionar elementos del DOM, medir rendimiento y depurar llamadas `ExtendScript`.
+
+---
+
+## ðŸ“ Estructura del Proyecto
+
+```
+Bitxels-GridIt-Pro/
+â”œâ”€â”€ .debug                     # Puertos DevTools de depuraciÃ³n remota (puerto 8088)
+â”œâ”€â”€ LICENSE                    # Licencia de cÃ³digo abierto MIT
+â”œâ”€â”€ README.md                  # DocumentaciÃ³n principal del repositorio
+â”œâ”€â”€ bitxels.svg                # Logotipo vectorial de la marca
+â”œâ”€â”€ CSXS/
+â”‚   â””â”€â”€ manifest.xml           # ConfiguraciÃ³n del paquete CEP (Host ILST [26.0, 99.9])
+â”œâ”€â”€ client/                    # Frontend (Chromium Embedded Framework - CEF)
+â”‚   â”œâ”€â”€ assets/
+â”‚   â”‚   â””â”€â”€ bitxels.svg        # Recursos grÃ¡ficos y logos
+â”‚   â”œâ”€â”€ css/
+â”‚   â”‚   â””â”€â”€ styles.css         # Sistema de diseÃ±o visual oscuro (Akrivi Dark Theme)
+â”‚   â”œâ”€â”€ js/
+â”‚   â”‚   â”œâ”€â”€ CSInterface.js     # Puente de comunicaciÃ³n Adobe CEP oficial con mock
+â”‚   â”‚   â””â”€â”€ main.js            # Controlador reactivo y manejador de eventos del DOM
+â”‚   â””â”€â”€ index.html             # Estructura del panel HTML5 y controles interactivos
+â”œâ”€â”€ jsx/                       # Backend (Adobe ExtendScript)
+â”‚   â””â”€â”€ hostScript.jsx         # Motor matemÃ¡tico y manipulador del DOM de Illustrator
+â””â”€â”€ docs/                      # DocumentaciÃ³n TÃ©cnica
+    â”œâ”€â”€ architecture.md        # Arquitectura two-tier, CEF y flujo de datos JSON
+    â”œâ”€â”€ context.md             # JustificaciÃ³n del producto y perfil de usuario
+    â””â”€â”€ versions.md            # Registro formal de versiones y cambios detallados
+```
+
+---
+
+## ðŸ›ï¸ Arquitectura T&eacute;cnica
+
+El plugin est&aacute; dise&ntilde;ado bajo un modelo desacoplado de dos niveles (**Two-Tier CEP Architecture**):
+
+```
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                 Adobe Illustrator CEP Runtime               â”‚
+â”‚                                                             â”‚
+â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
+â”‚   â”‚              Frontend (Chromium CEF)                â”‚   â”‚
+â”‚   â”‚     HTML5 + CSS3 Variables + JavaScript Vanilla     â”‚   â”‚
+â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
+â”‚                              â”‚                              â”‚
+â”‚                    CSInterface.evalScript                   â”‚
+â”‚                    (JSON Payload Bridge)                    â”‚
+â”‚                              â”‚                              â”‚
+â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
+â”‚   â”‚          Backend Engine (ExtendScript .jsx)         â”‚   â”‚
+â”‚   â”‚                 [GridItHost Namespace]              â”‚   â”‚
+â”‚   â”‚                                                     â”‚   â”‚
+â”‚   â”‚  - ValidaciÃ³n estricta de documentos activos        â”‚   â”‚
+â”‚   â”‚  - LÃ­mites de Artboard vs LÃ­mites de SelecciÃ³n      â”‚   â”‚
+â”‚   â”‚  - Algoritmos de trigonometrÃ­a (tan 30Â°, Fibonacci) â”‚   â”‚
+â”‚   â”‚  - CreaciÃ³n de PathItems y conversiÃ³n a guÃ­as       â”‚   â”‚
+â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
+â”‚                              â–¼                              â”‚
+â”‚                 Illustrator Document Engine                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+```
+
+Consulta [docs/architecture.md](docs/architecture.md) para detalles completos de la comunicaci&oacute;n JSON.
+
+---
+
+## ðŸ—ºï¸ Hoja de Ruta (Roadmap)
+
+- [x] **v0.1.0:** Estructura inicial CEP, mallas cuadradas, isom&eacute;tricas y proporci&oacute;n &aacute;urea.
+- [x] **v0.1.2:** Compatibilidad completa con Adobe Illustrator 2026 (CEP 11/12) y pol&iacute;ticas CEF.
+- [x] **v0.1.3:** Internacionalizaci&oacute;n y adaptaci&oacute;n completa al espa&ntilde;ol.
+- [x] **v0.1.4:** Redise&ntilde;o visual integral estilo Akrivi Studio (tarjetas flotantes oscuras).
+- [x] **v0.1.5:** Identidad de marca **Bitxels Grid**, integraci&oacute;n de logotipo SVG y filtro de claridad (20% opacidad).
+- [ ] **v0.2.0:** Algoritmo de Malla Hexagonal param&eacute;trica y mallas polares/radiales con &aacute;ngulos configurables.
+- [ ] **v0.3.0:** M&oacute;dulo de Cotas y Construcci&oacute;n (*Anchors*, *Handles*, *Outlines*) para exportar manuales de marca.
+- [ ] **v0.4.0:** Creador autom&aacute;tico de &Aacute;reas de Reserva (*Clearspace*) seg&uacute;n la altura `x` del logotipo.
+
+Para consultar el registro hist&oacute;rico completo, revisa [docs/versions.md](docs/versions.md).
+
+---
+
+## ðŸ“„ Licencia
+
+Este proyecto est&aacute; bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para m&aacute;s informaci&oacute;n. Eres libre de usarlo, modificarlo y distribuirlo para fines personales o comerciales.
+
+---
+
+## ðŸ‘¨â€ðŸ’» Autor y Cr&eacute;ditos
+
+Desarrollado y mantenido por **[robinfdezz](https://github.com/robinfdezz)** &bull; **Bitxels Grid**.
+
+Si este proyecto te resulta &uacute;til para tus proyectos de branding y dise&ntilde;o, &iexcl;no olvides dejar una &star; en el repositorio!
