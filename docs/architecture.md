@@ -1,7 +1,7 @@
-# Arquitectura del Plugin: Bitxels Grid (CEP para Adobe Illustrator)
+# Arquitectura del Plugin: BitGrid Pro (CEP para Adobe Illustrator)
 
 ## 1. Visión General de la Arquitectura
-**Bitxels Grid** está construido sobre el ecosistema **CEP (Common Extensibility Platform)** de Adobe, aprovechando un modelo desacoplado de dos niveles (*Two-Tier Architecture*):
+**BitGrid Pro** está construido sobre el ecosistema **CEP (Common Extensibility Platform)** de Adobe, aprovechando un modelo desacoplado de dos niveles (*Two-Tier Architecture*):
 
 1. **Frontend (Capa de Presentación / Client-side):**
    - Ejecutado en una instancia integrada de **Chromium Embedded Framework (CEF)**.
@@ -58,7 +58,7 @@ El puente de comunicación entre el entorno CEF (JavaScript moderno) y el entorn
      "makeGuides": true,
      "diagonals": false,
      "clearPrevious": true,
-     "layerName": "GridIt_Custom_Layer",
+     "layerName": "BitGrid_Custom_Layer",
      "colorType": "cyan"
    }
    ```
@@ -74,7 +74,7 @@ El puente de comunicación entre el entorno CEF (JavaScript moderno) y el entorn
      "success": true,
      "type": "Cuadrada",
      "elementsCount": 26,
-     "layerName": "GridIt_Custom_Layer",
+     "layerName": "BitGrid_Custom_Layer",
      "message": "Se generaron 26 guías cuadradas con éxito."
    }
    ```
@@ -117,6 +117,6 @@ Bitxels-GridIt-Pro/
 ---
 
 ## 4. Gestión de Memoria y Modelo de Capas
-- **Capa Exclusiva (`GridIt_Custom_Layer`):** Para evitar alterar el trabajo del diseñador, todas las guías y mallas se crean dentro de una capa dedicada configurable. Si la capa no existe, el motor la crea en la cúspide de la pila de capas.
+- **Capa Exclusiva (`BitGrid_Custom_Layer`):** Para evitar alterar el trabajo del diseñador, todas las guías y mallas se crean dentro de una capa dedicada configurable. Si la capa no existe, el motor la crea en la cúspide de la pila de capas.
 - **Limpieza Predictiva:** El usuario puede alternar la bandera `clearPrevious` para sustituir las guías previas sin acumular trazos residuales.
 - **Conversión de Guías (`pathItem.guides = true`):** Las geometrías generadas se convierten nativamente en guías de Illustrator (`Ver > Guías`), adoptando el comportamiento estándar de bloqueo (`Bloquear guías`) y color de guía cian del sistema operativo.

@@ -1,4 +1,4 @@
-# Contexto del Proyecto: Bitxels Grid
+# Contexto del Proyecto: BitGrid Pro
 
 ## 1. Justificación y Propósito
 El diseño de logotipos, isotipos y sistemas de identidad visual moderna exige una rigurosa precisión geométrica basada en mallas ortogonales, perspectivas isométricas y proporciones áureas (Fibonacci, regla de tercios y círculos tangentes).
@@ -9,14 +9,14 @@ Actualmente, los diseñadores en **Adobe Illustrator** se enfrentan a un proceso
 3. Convertir manualmente cada objeto en guía mediante el atajo `Ctrl + 5` (`Cmd + 5`).
 4. Organizar capas para no mezclar las guías con los artes finales.
 
-**Bitxels Grid** nace como una solución integral mediante una extensión CEP que automatiza y acelera este flujo de trabajo con un solo clic, ofreciendo controles paramétricos interactivos y generación instantánea de guías nativas de alta precisión.
+**BitGrid Pro** nace como una solución integral mediante una extensión CEP que automatiza y acelera este flujo de trabajo con un solo clic, ofreciendo controles paramétricos interactivos y generación instantánea de guías nativas de alta precisión.
 
 ---
 
 ## 2. Objetivos Principales
 1. **Velocidad de Flujo de Trabajo:** Reducir el tiempo de preparación de una mesa de trabajo para diseño de marcas de ~5 minutos a menos de 2 segundos.
 2. **Precisión Matemática:** Asegurar que los espaciados, inclinaciones isométricas (ejes triaxiales a 30° respecto a la horizontal) y progresiones de Fibonacci se calculen con exactitud de subpíxel/punto tipográfico.
-3. **No Invasivo:** Operar siempre sobre una capa dedicada (`GridIt_Custom_Layer`) para aislar los elementos auxiliares del diseño del cliente.
+3. **No Invasivo:** Operar siempre sobre una capa dedicada (`BitGrid_Custom_Layer`) para aislar los elementos auxiliares del diseño del cliente.
 4. **Experiencia de Usuario Nativa:** Proporcionar una interfaz visual oscura elegante inspirada en herramientas profesionales de diseño.
 
 ---

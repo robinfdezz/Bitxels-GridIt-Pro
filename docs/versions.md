@@ -1,6 +1,15 @@
-# Registro de Versiones (Changelog) - Bitxels Grid
+# Registro de Versiones (Changelog) - BitGrid Pro
 
 Todos los cambios notables de este proyecto están documentados en este archivo siguiendo el estándar [Semantic Versioning](https://semver.org/).
+
+---
+
+## [v0.1.6] - 2026-10-06
+### Nombre Oficial: BitGrid Pro
+- **Consolidación de Marca:**
+  - Actualización formal del nombre del plugin a **BitGrid Pro** en todo el proyecto: manifiesto de Illustrator (`CSXS/manifest.xml`), menú de extensiones (`Ventana > Extensiones > BitGrid Pro`), encabezado del panel y documentación.
+  - Actualización de la capa nativa por defecto en Illustrator a `BitGrid_Custom_Layer`.
+  - Distintivo visual en cabecera: Logotipo oficial + insignia `GRID PRO`.
 
 ---
 

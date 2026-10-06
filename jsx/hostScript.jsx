@@ -1,5 +1,5 @@
 /**
- * GridIt Pro - Motor Backend ExtendScript
+ * BitGrid Pro - Motor Backend ExtendScript
  * Idioma: EspaÃ±ol
  * Destino: Adobe Illustrator (CC 2020 - 2026+)
  */
@@ -154,7 +154,7 @@ var GridItHost = (function () {
 
             try {
                 var spacing = Number(params.spacing) || 40;
-                var layerName = params.layerName || "GridIt_Custom_Layer";
+                var layerName = params.layerName || "BitGrid_Custom_Layer";
                 var isGuide = (params.makeGuides !== false);
                 var clearPrev = (params.clearPrevious !== false);
                 var diagonals = !!params.diagonals;
@@ -224,7 +224,7 @@ var GridItHost = (function () {
 
             try {
                 var spacing = Number(params.spacing) || 40;
-                var layerName = params.layerName || "GridIt_Custom_Layer";
+                var layerName = params.layerName || "BitGrid_Custom_Layer";
                 var isGuide = (params.makeGuides !== false);
                 var clearPrev = (params.clearPrevious !== false);
                 var colorType = params.colorType || "cyan";
@@ -301,7 +301,7 @@ var GridItHost = (function () {
             }
 
             try {
-                var layerName = params.layerName || "GridIt_Custom_Layer";
+                var layerName = params.layerName || "BitGrid_Custom_Layer";
                 var isGuide = (params.makeGuides !== false);
                 var clearPrev = (params.clearPrevious !== false);
                 var colorType = params.colorType || "cyan";
@@ -367,7 +367,7 @@ var GridItHost = (function () {
             }
 
             try {
-                var targetName = layerName || "GridIt_Custom_Layer";
+                var targetName = layerName || "BitGrid_Custom_Layer";
                 var layer = doc.layers.getByName(targetName);
                 layer.remove();
                 app.redraw();

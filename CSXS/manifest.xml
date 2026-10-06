@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ExtensionManifest Version="9.0" ExtensionBundleId="com.antigravity.gridit" ExtensionBundleVersion="0.1.5"
-    ExtensionBundleName="Bitxels Grid - Generador de Mallas y GuÃ­as para Logotipos"
+    ExtensionBundleName="BitGrid Pro - Generador de Mallas y Guías para Logotipos"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ExtensionList>
         <Extension Id="com.antigravity.gridit.panel" Version="0.1.5" />
@@ -39,7 +39,7 @@
                 </Lifecycle>
                 <UI>
                     <Type>Panel</Type>
-                    <Menu>Bitxels Grid</Menu>
+                    <Menu>BitGrid Pro</Menu>
                     <Geometry>
                         <Size>
                             <Height>580</Height>

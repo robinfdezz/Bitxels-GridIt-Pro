@@ -1,11 +1,11 @@
 <div align="center">
 
-  <img src="client/assets/bitxels.svg" alt="Bitxels Grid Logo" width="280"/>
+  <img src="client/assets/bitxels.svg" alt="BitGrid Pro Logo" width="280"/>
 
   <br/>
   <br/>
 
-  # Bitxels Grid
+  # BitGrid Pro
   ### Generador Profesional de Mallas y Gu&iacute;as de Logotipos para Adobe Illustrator
 
   [![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-CC%202022--2026%2B-FF9A00?style=for-the-badge&logo=adobeillustrator&logoColor=white)](https://www.adobe.com/products/illustrator.html)
@@ -15,11 +15,11 @@
   [![Platform](https://img.shields.io/badge/Plataforma-Windows%20%7C%20macOS-gray?style=for-the-badge)](https://github.com/robinfdezz/Bitxels-GridIt-Pro)
 
   <p align="center">
-    <b>Bitxels Grid</b> es una extensi&oacute;n CEP (Common Extensibility Platform) de alta precisi&oacute;n dise&ntilde;ada para dise&ntilde;adores de identidad visual, creadores de isotipos y arquitectos de marca. Automatiza la construcci&oacute;n de ret&iacute;culas ortogonales, perspectivas isom&eacute;tricas y proporciones &aacute;ureas directamente como <b>gu&iacute;as nativas vectoriales</b> en Adobe Illustrator.
+    <b>BitGrid Pro</b> es una extensi&oacute;n CEP (Common Extensibility Platform) de alta precisi&oacute;n dise&ntilde;ada para dise&ntilde;adores de identidad visual, creadores de isotipos y arquitectos de marca. Automatiza la construcci&oacute;n de ret&iacute;culas ortogonales, perspectivas isom&eacute;tricas y proporciones &aacute;ureas directamente como <b>gu&iacute;as nativas vectoriales</b> en Adobe Illustrator.
   </p>
 
   <p align="center">
-    <a href="#-por-qu-bitxels-grid">Por qu&eacute; Bitxels Grid</a> &bull;
+    <a href="#-por-qu-bitxels-grid">Por qu&eacute; BitGrid Pro</a> &bull;
     <a href="#-caractersticas-principales">Caracter&iacute;sticas</a> &bull;
     <a href="#-instalacin-y-uso">Instalaci&oacute;n</a> &bull;
     <a href="#-estructura-del-proyecto">Estructura</a> &bull;
@@ -31,13 +31,13 @@
 
 ---
 
-## &#9889; &iquest;Por qu&eacute; Bitxels Grid?
+## &#9889; &iquest;Por qu&eacute; BitGrid Pro?
 
 Construir ret&iacute;culas de logotipos manualmente en Illustrator suele tomar entre 5 y 10 minutos por mesa de trabajo: duplicar trazos con *Transform Each*, calcular rotaciones a 30&deg; para isom&eacute;trico, agrupar, bloquear y convertir a gu&iacute;as (`Ctrl + 5`).
 
-Con **Bitxels Grid**, seleccionas tus par&aacute;metros y en **menos de 1 segundo**:
+Con **BitGrid Pro**, seleccionas tus par&aacute;metros y en **menos de 1 segundo**:
 - Se genera la ret&iacute;cula matem&aacute;tica calculada al subp&iacute;xel.
-- Se a&iacute;sla en una capa dedicada (`GridIt_Custom_Layer`).
+- Se a&iacute;sla en una capa dedicada (`BitGrid_Custom_Layer`).
 - Se convierte autom&aacute;ticamente en gu&iacute;as nativas cian bloqueables.
 - No interfiere con el arte ni las capas activas de tu cliente.
 
@@ -127,8 +127,8 @@ git clone https://github.com/robinfdezz/Bitxels-GridIt-Pro.git bitxels-grid
 1. Inicia o reinicia **Adobe Illustrator**.
 2. Dir&iacute;gete al men&uacute; superior:
    ```text
-   Ventana > Extensiones > Bitxels Grid
-   (Window > Extensions > Bitxels Grid)
+   Ventana > Extensiones > BitGrid Pro
+   (Window > Extensions > BitGrid Pro)
    ```
 3. Con un documento abierto, selecciona el tipo de malla (Cuadrada, Isom&eacute;trica o Raz&oacute;n &Aacute;urea), ajusta el espaciado y haz clic en **Hacer Gu&iacute;as** o **Generar**.
 
@@ -136,7 +136,7 @@ git clone https://github.com/robinfdezz/Bitxels-GridIt-Pro.git bitxels-grid
 
 ## &#128736; Depuraci&oacute;n y Modo Developer
 
-Bitxels Grid incluye soporte preconfigurado para **Chrome DevTools**:
+BitGrid Pro incluye soporte preconfigurado para **Chrome DevTools**:
 1. Con Illustrator y el panel abiertos, entra en Google Chrome a:
    ```text
    http://localhost:8088
@@ -231,6 +231,6 @@ Este proyecto est&aacute; bajo la Licencia **MIT**. Consulta el archivo [LICENSE
 
 ## &#128104;&#8205;&#128187; Autor y Cr&eacute;ditos
 
-Desarrollado y mantenido por **[robinfdezz](https://github.com/robinfdezz)** &bull; **Bitxels Grid**.
+Desarrollado y mantenido por **[robinfdezz](https://github.com/robinfdezz)** &bull; **BitGrid Pro**.
 
 Si este proyecto te resulta &uacute;til para tus proyectos de branding y dise&ntilde;o, &iexcl;no olvides dejar una estrella en el repositorio!

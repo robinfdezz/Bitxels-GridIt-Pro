@@ -1,5 +1,5 @@
 /**
- * GridIt Studio - Controlador Frontend (Estilo Akrivi Studio)
+ * BitGrid Pro - Controlador Frontend (Estilo Akrivi Studio)
  */
 
 (function () {
@@ -134,7 +134,7 @@
                 makeGuides: asGuides,
                 diagonals: toggleDiagonals ? toggleDiagonals.checked : false,
                 clearPrevious: toggleClearPrev ? toggleClearPrev.checked : true,
-                layerName: "GridIt_Custom_Layer",
+                layerName: "BitGrid_Custom_Layer",
                 colorType: "cyan"
             };
 
@@ -185,7 +185,7 @@
                         setStatus("Listo. Abre un documento en Illustrator.", true);
                     }
                 } catch(e) {
-                    setStatus("GridIt Studio activo.", true);
+                    setStatus("BitGrid Pro activo.", true);
                 }
             });
         }
