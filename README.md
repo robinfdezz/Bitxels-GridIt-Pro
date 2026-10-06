@@ -19,10 +19,11 @@
   </p>
 
   <p align="center">
-    <a href="#-caracter%C3%ADsticas-principales">Caracter&iacute;sticas</a> &bull;
-    <a href="#-instalaci%C3%B3n-y-uso">Instalaci&oacute;n</a> &bull;
+    <a href="#-por-qu-bitxels-grid">Por qu&eacute; Bitxels Grid</a> &bull;
+    <a href="#-caractersticas-principales">Caracter&iacute;sticas</a> &bull;
+    <a href="#-instalacin-y-uso">Instalaci&oacute;n</a> &bull;
     <a href="#-estructura-del-proyecto">Estructura</a> &bull;
-    <a href="#-arquitectura-t%C3%A9cnica">Arquitectura</a> &bull;
+    <a href="#-arquitectura-tcnica">Arquitectura</a> &bull;
     <a href="#-hoja-de-ruta-roadmap">Roadmap</a> &bull;
     <a href="#-licencia">Licencia</a>
   </p>
@@ -30,7 +31,7 @@
 
 ---
 
-## âš¡ &iquest;Por qu&eacute; Bitxels Grid?
+## &#9889; &iquest;Por qu&eacute; Bitxels Grid?
 
 Construir ret&iacute;culas de logotipos manualmente en Illustrator suele tomar entre 5 y 10 minutos por mesa de trabajo: duplicar trazos con *Transform Each*, calcular rotaciones a 30&deg; para isom&eacute;trico, agrupar, bloquear y convertir a gu&iacute;as (`Ctrl + 5`).
 
@@ -42,22 +43,22 @@ Con **Bitxels Grid**, seleccionas tus par&aacute;metros y en **menos de 1 segund
 
 ---
 
-## âœ¨ Caracter&iacute;sticas Principales
+## &#10024; Caracter&iacute;sticas Principales
 
 | Malla / Geometr&iacute;a | Estado | Descripci&oacute;n T&eacute;cnica |
 | :--- | :---: | :--- |
-| **Cuadrada (Cartesiana)** | ðŸŸ¢ Activo | Matriz ortogonal param&eacute;trica con soporte para diagonales a 45&deg; y 135&deg;. |
-| **Isom&eacute;trica (Triaxial)** | ðŸŸ¢ Activo | Proyecci&oacute;n axonom&eacute;trica de 30&deg; / 60&deg; calculada trigonom&eacute;tricamente para iconos y 3D. |
-| **Raz&oacute;n &Aacute;urea (&phi; 1.618)** | ðŸŸ¢ Activo | Paquete conc&eacute;ntrico de c&iacute;rculos con la serie de Fibonacci (8, 13, 21, 34, 55, 89) y cruz central. |
-| **Hexagonal (Panal)** | ðŸŸ¡ *Pr&oacute;x.* | Geometr&iacute;a modular de 6 caras para patrones y logomarcas tecnol&oacute;gicas. |
-| **Construcci&oacute;n de Puntos & Anclas** | ðŸŸ¡ *Pr&oacute;x.* | Exportador de cotas visuales con manejadores b&eacute;zier para manuales de marca. |
-| **&Aacute;rea de Reserva (Clearspace)** | ðŸŸ¡ *Pr&oacute;x.* | Zona de exclusi&oacute;n perimetral autom&aacute;tica basada en el valor `x` del isotipo. |
+| **Cuadrada (Cartesiana)** | [Activo] | Matriz ortogonal param&eacute;trica con soporte para diagonales a 45&deg; y 135&deg;. |
+| **Isom&eacute;trica (Triaxial)** | [Activo] | Proyecci&oacute;n axonom&eacute;trica de 30&deg; / 60&deg; calculada trigonom&eacute;tricamente para iconos y 3D. |
+| **Raz&oacute;n &Aacute;urea (&phi; 1.618)** | [Activo] | Paquete conc&eacute;ntrico de c&iacute;rculos con la serie de Fibonacci (8, 13, 21, 34, 55, 89) y cruz central. |
+| **Hexagonal (Panal)** | [Pr&oacute;x.] | Geometr&iacute;a modular de 6 caras para patrones y logomarcas tecnol&oacute;gicas. |
+| **Construcci&oacute;n de Puntos & Anclas** | [Pr&oacute;x.] | Exportador de cotas visuales con manejadores b&eacute;zier para manuales de marca. |
+| **&Aacute;rea de Reserva (Clearspace)** | [Pr&oacute;x.] | Zona de exclusi&oacute;n perimetral autom&aacute;tica basada en el valor `x` del isotipo. |
 
-> ðŸ’¡ **Nota Visual:** Las funciones en desarrollo est&aacute;n atenuadas al **20% de opacidad** en la interfaz para mantener total transparencia visual sobre lo que est&aacute; operativo.
+> &#128161; **Nota Visual:** Las funciones en desarrollo est&aacute;n atenuadas al **20% de opacidad** en la interfaz para mantener total transparencia visual sobre lo que est&aacute; operativo.
 
 ---
 
-## ðŸŽ¨ Sistema de Dise&ntilde;o Visual (Dark UI)
+## &#127912; Sistema de Dise&ntilde;o Visual (Dark UI)
 
 Inspirado en la est&eacute;tica moderna de paneles oscuros profesionales:
 - **Tarjeta Flotante:** Fondo carb&oacute;n mate (`#181818`), esquinas redondeadas de 14px y bordes sutiles.
@@ -67,7 +68,7 @@ Inspirado en la est&eacute;tica moderna de paneles oscuros profesionales:
 
 ---
 
-## ðŸš€ Instalaci&oacute;n y Uso
+## &#128640; Instalaci&oacute;n y Uso
 
 ### Prerrequisitos
 - **Adobe Illustrator** CC 2022 (v26.0) hasta CC 2026+ (v30.x+) en Windows o macOS.
@@ -133,7 +134,7 @@ git clone https://github.com/robinfdezz/Bitxels-GridIt-Pro.git bitxels-grid
 
 ---
 
-## ðŸ› ï¸ Depuraci&oacute;n y Modo Developer
+## &#128736; Depuraci&oacute;n y Modo Developer
 
 Bitxels Grid incluye soporte preconfigurado para **Chrome DevTools**:
 1. Con Illustrator y el panel abiertos, entra en Google Chrome a:
@@ -144,70 +145,70 @@ Bitxels Grid incluye soporte preconfigurado para **Chrome DevTools**:
 
 ---
 
-## ðŸ“ Estructura del Proyecto
+## &#128193; Estructura del Proyecto
 
 ```
 Bitxels-GridIt-Pro/
-â”œâ”€â”€ .debug                     # Puertos DevTools de depuraciÃ³n remota (puerto 8088)
-â”œâ”€â”€ LICENSE                    # Licencia de cÃ³digo abierto MIT
-â”œâ”€â”€ README.md                  # DocumentaciÃ³n principal del repositorio
-â”œâ”€â”€ bitxels.svg                # Logotipo vectorial de la marca
-â”œâ”€â”€ CSXS/
-â”‚   â””â”€â”€ manifest.xml           # ConfiguraciÃ³n del paquete CEP (Host ILST [26.0, 99.9])
-â”œâ”€â”€ client/                    # Frontend (Chromium Embedded Framework - CEF)
-â”‚   â”œâ”€â”€ assets/
-â”‚   â”‚   â””â”€â”€ bitxels.svg        # Recursos grÃ¡ficos y logos
-â”‚   â”œâ”€â”€ css/
-â”‚   â”‚   â””â”€â”€ styles.css         # Sistema de diseÃ±o visual oscuro (Akrivi Dark Theme)
-â”‚   â”œâ”€â”€ js/
-â”‚   â”‚   â”œâ”€â”€ CSInterface.js     # Puente de comunicaciÃ³n Adobe CEP oficial con mock
-â”‚   â”‚   â””â”€â”€ main.js            # Controlador reactivo y manejador de eventos del DOM
-â”‚   â””â”€â”€ index.html             # Estructura del panel HTML5 y controles interactivos
-â”œâ”€â”€ jsx/                       # Backend (Adobe ExtendScript)
-â”‚   â””â”€â”€ hostScript.jsx         # Motor matemÃ¡tico y manipulador del DOM de Illustrator
-â””â”€â”€ docs/                      # DocumentaciÃ³n TÃ©cnica
-    â”œâ”€â”€ architecture.md        # Arquitectura two-tier, CEF y flujo de datos JSON
-    â”œâ”€â”€ context.md             # JustificaciÃ³n del producto y perfil de usuario
-    â””â”€â”€ versions.md            # Registro formal de versiones y cambios detallados
+|-- .debug                     # Puertos DevTools de depuración remota (puerto 8088)
+|-- LICENSE                    # Licencia de código abierto MIT
+|-- README.md                  # Documentación principal del repositorio
+|-- bitxels.svg                # Logotipo vectorial de la marca
+|-- CSXS/
+|   \-- manifest.xml           # Configuración del paquete CEP (Host ILST [26.0, 99.9])
+|-- client/                    # Frontend (Chromium Embedded Framework - CEF)
+|   |-- assets/
+|   |   \-- bitxels.svg        # Recursos gráficos y logos
+|   |-- css/
+|   |   \-- styles.css         # Sistema de diseño visual oscuro (Akrivi Dark Theme)
+|   |-- js/
+|   |   |-- CSInterface.js     # Puente de comunicación Adobe CEP oficial con mock
+|   |   \-- main.js            # Controlador reactivo y manejador de eventos del DOM
+|   \-- index.html             # Estructura del panel HTML5 y controles interactivos
+|-- jsx/                       # Backend (Adobe ExtendScript)
+|   \-- hostScript.jsx         # Motor matemático y manipulador del DOM de Illustrator
+\-- docs/                      # Documentación Técnica
+    |-- architecture.md        # Arquitectura two-tier, CEF y flujo de datos JSON
+    |-- context.md             # Justificación del producto y perfil de usuario
+    \-- versions.md            # Registro formal de versiones y cambios detallados
 ```
 
 ---
 
-## ðŸ›ï¸ Arquitectura T&eacute;cnica
+## &#127963; Arquitectura T&eacute;cnica
 
 El plugin est&aacute; dise&ntilde;ado bajo un modelo desacoplado de dos niveles (**Two-Tier CEP Architecture**):
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                 Adobe Illustrator CEP Runtime               â”‚
-â”‚                                                             â”‚
-â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
-â”‚   â”‚              Frontend (Chromium CEF)                â”‚   â”‚
-â”‚   â”‚     HTML5 + CSS3 Variables + JavaScript Vanilla     â”‚   â”‚
-â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
-â”‚                              â”‚                              â”‚
-â”‚                    CSInterface.evalScript                   â”‚
-â”‚                    (JSON Payload Bridge)                    â”‚
-â”‚                              â”‚                              â”‚
-â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”   â”‚
-â”‚   â”‚          Backend Engine (ExtendScript .jsx)         â”‚   â”‚
-â”‚   â”‚                 [GridItHost Namespace]              â”‚   â”‚
-â”‚   â”‚                                                     â”‚   â”‚
-â”‚   â”‚  - ValidaciÃ³n estricta de documentos activos        â”‚   â”‚
-â”‚   â”‚  - LÃ­mites de Artboard vs LÃ­mites de SelecciÃ³n      â”‚   â”‚
-â”‚   â”‚  - Algoritmos de trigonometrÃ­a (tan 30Â°, Fibonacci) â”‚   â”‚
-â”‚   â”‚  - CreaciÃ³n de PathItems y conversiÃ³n a guÃ­as       â”‚   â”‚
-â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜   â”‚
-â”‚                              â–¼                              â”‚
-â”‚                 Illustrator Document Engine                 â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
++-------------------------------------------------------------+
+|                 Adobe Illustrator CEP Runtime               |
+|                                                             |
+|   +-----------------------------------------------------+   |
+|   |              Frontend (Chromium CEF)                |   |
+|   |     HTML5 + CSS3 Variables + JavaScript Vanilla     |   |
+|   +--------------------------+--------------------------+   |
+|                              |                              |
+|                    CSInterface.evalScript                   |
+|                    (JSON Payload Bridge)                    |
+|                              |                              |
+|   +--------------------------v--------------------------+   |
+|   |          Backend Engine (ExtendScript .jsx)         |   |
+|   |                 [GridItHost Namespace]              |   |
+|   |                                                     |   |
+|   |  - Validación estricta de documentos activos        |   |
+|   |  - Límites de Artboard vs Límites de Selección      |   |
+|   |  - Algoritmos de trigonometría (tan 30°, Fibonacci) |   |
+|   |  - Creación de PathItems y conversión a guías       |   |
+|   +--------------------------+--------------------------+   |
+|                              v                              |
+|                 Illustrator Document Engine                 |
++-------------------------------------------------------------+
 ```
 
 Consulta [docs/architecture.md](docs/architecture.md) para detalles completos de la comunicaci&oacute;n JSON.
 
 ---
 
-## ðŸ—ºï¸ Hoja de Ruta (Roadmap)
+## &#128506; Hoja de Ruta (Roadmap)
 
 - [x] **v0.1.0:** Estructura inicial CEP, mallas cuadradas, isom&eacute;tricas y proporci&oacute;n &aacute;urea.
 - [x] **v0.1.2:** Compatibilidad completa con Adobe Illustrator 2026 (CEP 11/12) y pol&iacute;ticas CEF.
@@ -222,14 +223,14 @@ Para consultar el registro hist&oacute;rico completo, revisa [docs/versions.md](
 
 ---
 
-## ðŸ“„ Licencia
+## &#128196; Licencia
 
 Este proyecto est&aacute; bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para m&aacute;s informaci&oacute;n. Eres libre de usarlo, modificarlo y distribuirlo para fines personales o comerciales.
 
 ---
 
-## ðŸ‘¨â€ðŸ’» Autor y Cr&eacute;ditos
+## &#128104;&#8205;&#128187; Autor y Cr&eacute;ditos
 
 Desarrollado y mantenido por **[robinfdezz](https://github.com/robinfdezz)** &bull; **Bitxels Grid**.
 
-Si este proyecto te resulta &uacute;til para tus proyectos de branding y dise&ntilde;o, &iexcl;no olvides dejar una &star; en el repositorio!
+Si este proyecto te resulta &uacute;til para tus proyectos de branding y dise&ntilde;o, &iexcl;no olvides dejar una estrella en el repositorio!
