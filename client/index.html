@@ -24,14 +24,14 @@
 <body style="background-color: #222222; color: #f5f5f5; margin: 0; padding: 0;">
     <div id="app" class="app-wrapper">
         
-        <!-- 1. Encabezado de Marca: Logo SVG + GRID Badge -->
+        <!-- 1. Encabezado de Marca: Logo SVG arriba + Nombre BitGrid Pro debajo -->
         <header class="brand-header">
-            <div class="brand-emblem-row">
+            <div class="brand-emblem-col">
                 <img src="./assets/bitxels.svg" alt="BitGrid Pro" class="brand-logo-img">
-                <span class="brand-badge-grid">GRID PRO</span>
+                <span class="brand-title-text">BitGrid Pro</span>
             </div>
 
-            <!-- Sub-navegaciÃ³n horizontal: Solo Mallas estÃ¡ activa, el resto al 20% de opacidad -->
+            <!-- Sub-navegación horizontal: Solo Mallas está activa, el resto al 20% de opacidad -->
             <nav class="subnav-tabs" role="tablist">
                 <button class="subnav-item active" data-nav="grids">Mallas de Logo</button>
                 <button class="subnav-item disabled-feature" data-functional="false" title="Pr&oacute;ximamente">Presentaciones</button>
@@ -43,10 +43,10 @@
         <!-- 2. Contenedor Flotante Principal (Studio Card) -->
         <main class="studio-card">
             
-            <!-- Barra Superior de la Tarjeta: Icono Azul + TÃ­tulo + Ver Tutorial (20% opacidad) -->
+            <!-- Barra Superior de la Tarjeta: Icono Azul + Título + Ver Tutorial (20% opacidad) -->
             <div class="card-topbar">
                 <div class="card-title-group">
-                    <div class="blue-icon-badge">
+                    <div class="green-icon-badge">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="3" y="3" width="7" height="7" rx="1.5"/>
                             <rect x="14" y="3" width="7" height="7" rx="1.5"/>
@@ -65,14 +65,14 @@
                 </button>
             </div>
 
-            <!-- 3. Control Segmentado PÃ­ldora: Base es funcional, ConstrucciÃ³n y Reserva al 20% de opacidad -->
+            <!-- 3. Control Segmentado Píldora: Base es funcional, Construcción y Reserva al 20% de opacidad -->
             <div class="segmented-control">
                 <button class="segment-btn active" data-segment="base" id="seg-base">Base</button>
                 <button class="segment-btn disabled-feature" data-functional="false" id="seg-construction" title="Pr&oacute;ximamente">Construcci&oacute;n</button>
                 <button class="segment-btn disabled-feature" data-functional="false" id="seg-clearspace" title="Pr&oacute;ximamente">&Aacute;rea de Reserva</button>
             </div>
 
-            <!-- 4. CuadrÃ­cula de 4 Ãtems: Cuadrada, IsomÃ©trica y RazÃ³n Ãurea activas. Hexagonal al 20% -->
+            <!-- 4. Cuadrícula de 4 Ítems: Cuadrada, Isométrica y Razón Áurea activas. Hexagonal al 20% -->
             <div class="quad-grid" id="view-base-quad">
                 <!-- Cuadrada (Activa 100%) -->
                 <button class="quad-item active" data-type="square" id="card-square">
@@ -88,13 +88,16 @@
                     <span class="quad-label">Cuadrada</span>
                 </button>
 
-                <!-- IsomÃ©trica (Activa 100%) -->
+                <!-- Isométrica (Activa 100%) -->
                 <button class="quad-item" data-type="isometric" id="card-isometric">
                     <div class="quad-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-                            <polyline points="2 17 12 22 22 17"/>
-                            <polyline points="2 12 12 17 22 12"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L3 7.2v9.6L12 22l9-5.2V7.2L12 2z"/>
+                            <line x1="12" y1="2" x2="12" y2="22"/>
+                            <line x1="3" y1="7.2" x2="21" y2="16.8"/>
+                            <line x1="3" y1="16.8" x2="21" y2="7.2"/>
+                            <line x1="7.5" y1="4.6" x2="7.5" y2="19.4"/>
+                            <line x1="16.5" y1="4.6" x2="16.5" y2="19.4"/>
                         </svg>
                     </div>
                     <span class="quad-label">Isom&eacute;trica</span>
@@ -110,20 +113,22 @@
                     <span class="quad-label">Hexagonal</span>
                 </button>
 
-                <!-- RazÃ³n Ãurea (Activa 100%) -->
+                <!-- Razón Áurea (Activa 100%) -->
                 <button class="quad-item" data-type="golden" id="card-golden">
                     <div class="quad-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="5" width="18" height="14" rx="1"/>
-                            <line x1="14" y1="5" x2="14" y2="19"/>
-                            <line x1="14" y1="12" x2="21" y2="12"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="9.5"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2.5"/>
+                            <line x1="12" y1="1.5" x2="12" y2="22.5"/>
+                            <line x1="1.5" y1="12" x2="22.5" y2="12"/>
                         </svg>
                     </div>
                     <span class="quad-label">Raz&oacute;n &Aacute;urea</span>
                 </button>
             </div>
 
-            <!-- 5. AcordeÃ³n Desplegable: Personalizar (100% Funcional) -->
+            <!-- 5. Acordeón Desplegable: Personalizar (100% Funcional con todos los controles) -->
             <div class="accordion-wrapper open" id="accordion-customize">
                 <div class="accordion-header" id="btn-toggle-accordion">
                     <div class="accordion-title">
@@ -146,6 +151,94 @@
                         <input type="range" class="range-slider" id="slider-spacing" min="10" max="250" value="50" step="5">
                     </div>
 
+                    <!-- Slider de Grosor de Trazo (Para Generar) -->
+                    <div class="slider-row">
+                        <div class="slider-labels">
+                            <span>Grosor de Trazo (pt)</span>
+                            <span class="slider-value" id="val-stroke-width">0.50 pt</span>
+                        </div>
+                        <input type="range" class="range-slider" id="slider-stroke-width" min="0.1" max="5.0" value="0.5" step="0.1">
+                    </div>
+
+                    <!-- Paleta de Color de Trazo (Swatches) -->
+                    <div class="swatch-row">
+                        <span class="swatch-label">Color de Trazo</span>
+                        <div class="swatch-group">
+                            <button type="button" class="swatch-btn active" data-color="#10B981" style="background-color: #10B981;" title="Verde Esmeralda"></button>
+                            <button type="button" class="swatch-btn" data-color="#00E676" style="background-color: #00E676;" title="Verde Ne&oacute;n"></button>
+                            <button type="button" class="swatch-btn" data-color="#00C8FF" style="background-color: #00C8FF;" title="Cian"></button>
+                            <button type="button" class="swatch-btn" data-color="#FF007F" style="background-color: #FF007F;" title="Magenta"></button>
+                            <button type="button" class="swatch-btn" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="Blanco"></button>
+                            <button type="button" class="swatch-btn" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Negro"></button>
+                            <button type="button" class="color-picker-btn" id="btn-toggle-color-picker" title="Color personalizado">
+                                <svg class="color-picker-icon-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 3.1 7 7 7h1.5c.8 0 1.5.7 1.5 1.5 0 .4-.2.8-.4 1.1-.3.3-.4.7-.4 1.1 0 .8.7 1.5 1.5 1.5 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
+                                    <circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="16.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Popover de Color Personalizado (100% In-Plugin, Tema Oscuro) -->
+                    <div class="color-popover" id="color-popover" style="display: none;">
+                        <div class="color-popover-header">
+                            <span class="color-popover-title">Color Personalizado</span>
+                            <button type="button" class="color-popover-close" id="btn-close-color-popover" title="Cerrar">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- 1. Plano 2D de Saturación y Brillo -->
+                        <div class="color-sat-val-box" id="color-sat-val-box">
+                            <div class="color-sat-white"></div>
+                            <div class="color-sat-black"></div>
+                            <div class="color-cursor" id="color-cursor"></div>
+                        </div>
+
+                        <!-- 2. Barra de Tono (Hue Rainbow) -->
+                        <div class="color-hue-bar" id="color-hue-bar">
+                            <div class="color-hue-thumb" id="color-hue-thumb"></div>
+                        </div>
+
+                        <!-- 3. Herramientas: Cuentagotas + Muestra Actual + Valor Hex -->
+                        <div class="color-tools-row">
+                            <button type="button" class="color-eyedropper-btn" id="btn-eyedropper" title="Cuentagotas (Muestrear color de Illustrator)">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2l4 4L7 17H3v-4L14 2z"/>
+                                    <path d="M14 6l4 4"/>
+                                    <line x1="2" y1="22" x2="5" y2="19"/>
+                                </svg>
+                            </button>
+                            <div class="color-current-preview" id="color-current-preview"></div>
+                            <div class="color-hex-wrapper">
+                                <span class="color-hex-prefix">#</span>
+                                <input type="text" class="color-hex-input" id="input-hex-val" value="10B981" maxlength="6" spellcheck="false">
+                            </div>
+                        </div>
+
+                        <!-- 4. Canales RGB y Botón Aplicar -->
+                        <div class="color-rgb-row">
+                            <div class="color-rgb-field">
+                                <span class="rgb-label">R</span>
+                                <input type="number" id="input-rgb-r" min="0" max="255" value="16">
+                            </div>
+                            <div class="color-rgb-field">
+                                <span class="rgb-label">G</span>
+                                <input type="number" id="input-rgb-g" min="0" max="255" value="185">
+                            </div>
+                            <div class="color-rgb-field">
+                                <span class="rgb-label">B</span>
+                                <input type="number" id="input-rgb-b" min="0" max="255" value="129">
+                            </div>
+                            <button type="button" class="btn-apply-color" id="btn-apply-color">OK</button>
+                        </div>
+                    </div>
+
                     <!-- Columnas y Filas -->
                     <div class="form-grid-2" id="box-cols-rows">
                         <div class="input-box">
@@ -158,7 +251,7 @@
                         </div>
                     </div>
 
-                    <!-- Ãrea de Destino -->
+                    <!-- Área de Destino -->
                     <div class="input-box">
                         <label>&Aacute;rea de Aplicaci&oacute;n</label>
                         <select id="select-scope">
@@ -178,16 +271,24 @@
                     </div>
 
                     <div class="toggle-row">
-                        <span class="toggle-label">Reemplazar gu&iacute;as previas</span>
+                        <span class="toggle-label">Reemplazar previas en mesa activa</span>
                         <label class="switch">
                             <input type="checkbox" id="toggle-clear-prev" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span class="toggle-label">Agrupar resultado</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-group-result" checked>
                             <span class="switch-slider"></span>
                         </label>
                     </div>
                 </div>
             </div>
 
-            <!-- 6. Botones de AcciÃ³n (Make Guides & Generate - 100% Funcionales) -->
+            <!-- 6. Botones de Acción (Make Guides & Generate - 100% Funcionales) -->
             <div class="card-actions">
                 <button class="btn-make-guides" id="btn-make-guides">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -243,7 +344,7 @@
             <span id="status-text">Listo. Documento conectado.</span>
         </div>
 
-        <!-- Copyright / VersiÃ³n -->
+        <!-- Copyright / Versión -->
         <footer class="app-copyright">
             <span>BITGRID PRO 26.1</span>
             <span>&copy; 2026 BitGrid Pro. Todos los derechos reservados.</span>

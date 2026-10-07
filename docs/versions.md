@@ -4,6 +4,35 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [v0.1.8] - 2026-10-06
+### Nueva Funcionalidad: Manipulación de Grosor y Color de Trazo en "Generar"
+- **Controles de Estilo de Trazo en Frontend:**
+  - Nuevo slider **Grosor de Trazo (pt)**: Rango de `0.1 pt` a `5.0 pt` (por defecto `0.5 pt`) con tirador cuadrado redondeado y lectura numérica en vivo.
+  - Paleta interactiva de **Swatches de Color**: Cian, Magenta, Azul Eléctrico, Blanco, Gris, Negro.
+  - Selector libre de color personalizado (ícono vectorial SVG) para cualquier valor hexadecimal de marca.
+- **Backend ExtendScript (`jsx/hostScript.jsx`):**
+  - Parser hexadecimal a RGB (`parseHexToRgb`) integrado en ExtendScript.
+  - Inyección dinámica de `strokeWidth` y `strokeColor` en las retículas cuadradas, isométricas y de proporción áurea al usar el botón **Generar**.
+- **Documentación:**
+  - Registrados parámetros en [docs/functions.md](functions.md), estándares en [docs/design-system.md](design-system.md) y [README.md](../README.md).
+
+---
+
+## [v0.1.7] - 2026-10-06
+### Nueva Funcionalidad: Agrupación Paramétrica y Refinamiento UI
+- **Backend ExtendScript (`jsx/hostScript.jsx`):**
+  - Implementación del parámetro `groupResult` en `generateSquareGrid`, `generateIsometricGrid` y `generateGoldenCircles`.
+  - Agrupación automática en Illustrator dentro de un `GroupItem` con nombre semántico (ej. `BitGrid_Cuadrada_50pt`) si el toggle está activo.
+- **Frontend & UI:**
+  - Nuevo interruptor toggle en el acordeón *Personalizar*: **Agrupar resultado** (activado por defecto).
+  - Rediseño del tirador del slider (thumb): cambiado de círculo a **cuadrado con bordes redondeados** (`border-radius: 3.5px`).
+  - Rediseño de cabecera: logotipo SVG centrado en la parte superior y texto limpio **BitGrid Pro** debajo sin fondo de píldora.
+- **Documentación:**
+  - Creado [docs/design-system.md](design-system.md) registrando todos los estándares visuales, decisiones de diseño y tokens para futuras versiones.
+  - Actualizado [docs/functions.md](functions.md) con la documentación del parámetro de agrupación.
+
+---
+
 ## [v0.1.6] - 2026-10-06
 ### Nombre Oficial: BitGrid Pro
 - **Consolidación de Marca:**

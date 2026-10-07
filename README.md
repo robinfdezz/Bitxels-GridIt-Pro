@@ -10,7 +10,7 @@
 
   [![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-CC%202022--2026%2B-FF9A00?style=for-the-badge&logo=adobeillustrator&logoColor=white)](https://www.adobe.com/products/illustrator.html)
   [![CEP Runtime](https://img.shields.io/badge/CEP%20Runtime-9.0--12.0-00C8FF?style=for-the-badge)](https://github.com/Adobe-CEP)
-  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.1.5--alpha-3b82f6?style=for-the-badge)](docs/versions.md)
+  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.2.0-10b981?style=for-the-badge)](docs/versions.md)
   [![Licencia](https://img.shields.io/badge/Licencia-MIT-10b981?style=for-the-badge)](LICENSE)
   [![Platform](https://img.shields.io/badge/Plataforma-Windows%20%7C%20macOS-gray?style=for-the-badge)](https://github.com/robinfdezz/Bitxels-GridIt-Pro)
 
@@ -167,7 +167,9 @@ Bitxels-GridIt-Pro/
 |-- jsx/                       # Backend (Adobe ExtendScript)
 |   \-- hostScript.jsx         # Motor matemático y manipulador del DOM de Illustrator
 \-- docs/                      # Documentación Técnica
-    |-- architecture.md        # Arquitectura two-tier, CEF y flujo de datos JSON
+    |-- architecture.md        # Especificación técnica y arquitectura
+|   |-- functions.md           # Documentación detallada de funciones y alcance
+|   |-- design-system.md       # Sistema de diseño, estándares UI y decisiones visuales
     |-- context.md             # Justificación del producto y perfil de usuario
     \-- versions.md            # Registro formal de versiones y cambios detallados
 ```
@@ -215,7 +217,8 @@ Consulta [docs/architecture.md](docs/architecture.md) para detalles completos de
 - [x] **v0.1.3:** Internacionalizaci&oacute;n y adaptaci&oacute;n completa al espa&ntilde;ol.
 - [x] **v0.1.4:** Redise&ntilde;o visual integral estilo Akrivi Studio (tarjetas flotantes oscuras).
 - [x] **v0.1.5:** Identidad de marca **Bitxels Grid**, integraci&oacute;n de logotipo SVG y filtro de claridad (20% opacidad).
-- [ ] **v0.2.0:** Algoritmo de Malla Hexagonal param&eacute;trica y mallas polares/radiales con &aacute;ngulos configurables.
+- [x] **v0.2.0:** Concurrencia isom&eacute;trica de estrella de 6 puntas, selector de color popover con cuentagotas para Illustrator, gesti&oacute;n multi-mesa aislada y homologaci&oacute;n est&eacute;tica verde.
+- [ ] **v0.2.5:** Algoritmo de Malla Hexagonal param&eacute;trica y mallas polares/radiales con &aacute;ngulos configurables.
 - [ ] **v0.3.0:** M&oacute;dulo de Cotas y Construcci&oacute;n (*Anchors*, *Handles*, *Outlines*) para exportar manuales de marca.
 - [ ] **v0.4.0:** Creador autom&aacute;tico de &Aacute;reas de Reserva (*Clearspace*) seg&uacute;n la altura `x` del logotipo.
 
