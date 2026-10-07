@@ -100,7 +100,7 @@ En BitGrid Pro no se utilizan elementos circulares (`50%` de radio) para micro-c
       user-select: none !important;
   }
   ```
-- **Aplicado a:** Pestañas *Presentaciones*, *Guías de Marca*, *Archivos*, enlace *Ayuda*, enlace *Compartir*, tarjetas de malla *Hexagonal*.
+- **Aplicado a:** Pestañas *Presentaciones*, *Guías de Marca*, *Archivos*, enlace *Ayuda*, enlace *Compartir*, pestañas secundarias en desarrollo (*Construcción*, *Área de Reserva*).
 
 ---
 

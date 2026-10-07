@@ -104,10 +104,10 @@
                 </button>
 
                 <!-- Hexagonal (Sin funcionalidad actual -> 20% opacidad) -->
-                <button class="quad-item disabled-feature" data-type="hexagon" data-functional="false" id="card-hexagon" title="Pr&oacute;ximamente">
+                <button class="quad-item" data-type="hexagon" id="card-hexagon">
                     <div class="quad-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2l7 4v8l-7 4-7-4V6z"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l8.5 4.9v9.8L12 21.6 3.5 16.7V6.9L12 2z"/>
                         </svg>
                     </div>
                     <span class="quad-label">Hexagonal</span>
@@ -145,7 +145,7 @@
                     <!-- Slider de Espaciado -->
                     <div class="slider-row">
                         <div class="slider-labels">
-                            <span>Espaciado / Paso (pt)</span>
+                            <span id="lbl-spacing">Espaciado / Paso (pt)</span>
                             <span class="slider-value" id="val-spacing">50.00</span>
                         </div>
                         <input type="range" class="range-slider" id="slider-spacing" min="10" max="250" value="50" step="5">
@@ -262,12 +262,30 @@
                     </div>
 
                     <!-- Opciones Toggles -->
-                    <div class="toggle-row">
+                    <div class="toggle-row" id="row-toggle-diagonals">
                         <span class="toggle-label">Diagonales a 45&deg;</span>
                         <label class="switch">
                             <input type="checkbox" id="toggle-diagonals">
                             <span class="switch-slider"></span>
                         </label>
+                    </div>
+
+                    <!-- Opciones específicas de Malla Hexagonal -->
+                    <div id="hex-options-block" style="display: none; flex-direction: column; gap: 8px;">
+                        <div class="input-box">
+                            <label>Orientaci&oacute;n Hexagonal</label>
+                            <select id="select-hex-orientation">
+                                <option value="pointy" selected>V&eacute;rtice Vertical (Pointy-topped)</option>
+                                <option value="flat">Cara Plana Horizontal (Flat-topped)</option>
+                            </select>
+                        </div>
+                        <div class="toggle-row">
+                            <span class="toggle-label">Radios / Ejes internos (6 tri&aacute;ngulos)</span>
+                            <label class="switch">
+                                <input type="checkbox" id="toggle-hex-spokes">
+                                <span class="switch-slider"></span>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="toggle-row">
@@ -346,8 +364,8 @@
 
         <!-- Copyright / Versión -->
         <footer class="app-copyright">
-            <span>BITGRID PRO 26.1</span>
-            <span>&copy; 2026 BitGrid Pro. Todos los derechos reservados.</span>
+            <span class="copyright-version">BITGRID PRO &bull; v0.3.0</span>
+            <span class="copyright-text">&copy; 2026 BitGrid Pro. Todos los derechos reservados.</span>
         </footer>
     </div>
 

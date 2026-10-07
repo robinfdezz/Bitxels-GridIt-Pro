@@ -543,7 +543,256 @@ var GridItHost = (function () {
         },
 
         
-        /**
+                /**
+         * Genera una malla hexagonal perfecta (honeycomb) en Illustrator
+         * - Vértice vertical (pointy-topped, 30°) o Cara plana (flat-topped, 0°)
+         * - Celdas cerradas individuales (pathItem.closed = true) para fácil coloreado/relleno
+         * - Opcional: Radios/ejes internos de subdivisión en 6 triángulos equiláteros
+         * - Compatible con: Mesa de trabajo activa (artboard), Matriz centrada (custom cols x rows), o Selección
+         */
+        generateHexagonalGrid: function (paramsJson) {
+            var params = (typeof paramsJson === "string") ? JSONHelper.parse(paramsJson) : paramsJson;
+            var doc = getActiveDocument();
+            if (!doc) {
+                return JSONHelper.stringify({
+                    success: false,
+                    message: "Error: No hay documento activo."
+                });
+            }
+
+            try {
+                var radius = Number(params.spacing) || 40;
+                if (radius < 1) radius = 1;
+                var orientation = (params.orientation === "flat") ? "flat" : "pointy";
+                var innerSpokes = !!params.innerSpokes;
+                var layerName = params.layerName || "BitGrid_Custom_Layer";
+                var isGuide = (params.makeGuides !== false);
+                var clearPrev = (params.clearPrevious !== false);
+                var shouldGroup = (params.groupResult !== false);
+                var strokeW = Number(params.strokeWidth) || 0.5;
+                var strokeColor = params.strokeColor || "#10B981";
+                var targetScope = params.targetScope || "artboard";
+                var cols = Math.max(1, parseInt(params.cols, 10) || 12);
+                var rows = Math.max(1, parseInt(params.rows, 10) || 12);
+
+                var targetLayer = getOrCreateLayer(doc, layerName);
+                clearTargetScopeItems(targetLayer, targetScope, doc, clearPrev);
+                var container = targetLayer;
+                if (shouldGroup) {
+                    var hexGroup = targetLayer.groupItems.add();
+                    var abNum = doc.artboards.getActiveArtboardIndex() + 1;
+                    var orientLabel = (orientation === "pointy") ? "Vertical" : "Plana";
+                    hexGroup.name = "BitGrid_Hexagonal_" + orientLabel + "_Mesa" + abNum + "_" + Math.round(radius) + "pt";
+                    container = hexGroup;
+                }
+
+                // Helper para crear un hexágono cerrado con o sin radios internos
+                var baseAngle = (orientation === "pointy") ? 90 : 0;
+                /**
+                 * Algoritmo Sutherland-Hodgman para recortar polígonos a los límites de la mesa
+                 */
+                function clipPolygonToRect(points, xmin, ymin, xmax, ymax) {
+                    var out = points;
+
+                    function clipEdge(list, insideFn, intersectFn) {
+                        var res = [];
+                        if (list.length === 0) return res;
+                        var prev = list[list.length - 1];
+                        var prevIn = insideFn(prev);
+                        for (var i = 0; i < list.length; i++) {
+                            var curr = list[i];
+                            var currIn = insideFn(curr);
+                            if (currIn) {
+                                if (!prevIn) res.push(intersectFn(prev, curr));
+                                res.push(curr);
+                            } else if (prevIn) {
+                                res.push(intersectFn(prev, curr));
+                            }
+                            prev = curr;
+                            prevIn = currIn;
+                        }
+                        return res;
+                    }
+
+                    // 1. Izquierda (x >= xmin)
+                    out = clipEdge(out, function(p) { return p[0] >= xmin; }, function(p1, p2) {
+                        return [xmin, p1[1] + (p2[1] - p1[1]) * (xmin - p1[0]) / (p2[0] - p1[0])];
+                    });
+                    // 2. Derecha (x <= xmax)
+                    out = clipEdge(out, function(p) { return p[0] <= xmax; }, function(p1, p2) {
+                        return [xmax, p1[1] + (p2[1] - p1[1]) * (xmax - p1[0]) / (p2[0] - p1[0])];
+                    });
+                    // 3. Inferior (y >= ymin)
+                    out = clipEdge(out, function(p) { return p[1] >= ymin; }, function(p1, p2) {
+                        return [p1[0] + (p2[0] - p1[0]) * (ymin - p1[1]) / (p2[1] - p1[1]), ymin];
+                    });
+                    // 4. Superior (y <= ymax)
+                    out = clipEdge(out, function(p) { return p[1] <= ymax; }, function(p1, p2) {
+                        return [p1[0] + (p2[0] - p1[0]) * (ymax - p1[1]) / (p2[1] - p1[1]), ymax];
+                    });
+
+                    // Limpiar vértices duplicados consecutivos
+                    if (out.length < 2) return out;
+                    var clean = [out[0]];
+                    for (var k = 1; k < out.length; k++) {
+                        var pPrev = clean[clean.length - 1];
+                        var pCurr = out[k];
+                        if (Math.abs(pPrev[0] - pCurr[0]) > 0.01 || Math.abs(pPrev[1] - pCurr[1]) > 0.01) {
+                            clean.push(pCurr);
+                        }
+                    }
+                    if (clean.length > 2) {
+                        if (Math.abs(clean[0][0] - clean[clean.length - 1][0]) < 0.01 &&
+                            Math.abs(clean[0][1] - clean[clean.length - 1][1]) < 0.01) {
+                            clean.pop();
+                        }
+                    }
+                    return clean;
+                }
+
+                function createHexCell(parentGroup, hx, hy, r, withSpokes, clipBounds) {
+                    var pts = [];
+                    for (var i = 0; i < 6; i++) {
+                        var rad = (baseAngle + i * 60) * Math.PI / 180;
+                        pts.push([hx + r * Math.cos(rad), hy + r * Math.sin(rad)]);
+                    }
+
+                    var finalPts = pts;
+                    if (clipBounds) {
+                        finalPts = clipPolygonToRect(pts, clipBounds[0], clipBounds[1], clipBounds[2], clipBounds[3]);
+                        if (finalPts.length < 3) return false;
+                    }
+
+                    var hexItem = parentGroup.pathItems.add();
+                    hexItem.setEntirePath(finalPts);
+                    hexItem.closed = true;
+                    applyPathStyle(hexItem, isGuide, strokeW, strokeColor);
+
+                    if (withSpokes) {
+                        for (var s = 0; s < 3; s++) {
+                            var pA = pts[s];
+                            var pB = pts[s + 3];
+                            var spokePts = [pA, pB];
+                            if (clipBounds) {
+                                spokePts = clipLineToRect(pA[0], pA[1], pB[0], pB[1], clipBounds[0], clipBounds[1], clipBounds[2], clipBounds[3]);
+                            }
+                            if (spokePts) {
+                                var spoke = parentGroup.pathItems.add();
+                                spoke.setEntirePath(spokePts);
+                                applyPathStyle(spoke, isGuide, strokeW, strokeColor);
+                            }
+                        }
+                    }
+                    return true;
+                }
+
+                var hexCount = 0;
+
+                if (targetScope === "custom") {
+                    // Matriz Centrada (cols x rows)
+                    var abIndex = doc.artboards.getActiveArtboardIndex();
+                    var abRect = doc.artboards[abIndex].artboardRect;
+                    var cx = abRect[0] + Math.abs(abRect[2] - abRect[0]) / 2;
+                    var cy = abRect[1] - Math.abs(abRect[1] - abRect[3]) / 2;
+
+                    if (orientation === "pointy") {
+                        var dx = Math.sqrt(3) * radius;
+                        var dy = 1.5 * radius;
+                        var midXOffset = (rows > 1) ? (dx / 4) : 0;
+
+                        for (var r = 0; r < rows; r++) {
+                            var hy = cy + ((rows - 1) / 2 - r) * dy;
+                            var rowOffset = (r % 2 === 1) ? (dx / 2) : 0;
+                            for (var c = 0; c < cols; c++) {
+                                var hx = cx + (c - (cols - 1) / 2) * dx + rowOffset - midXOffset;
+                                createHexCell(container, hx, hy, radius, innerSpokes);
+                                hexCount++;
+                            }
+                        }
+                    } else {
+                        // flat-topped
+                        var dx = 1.5 * radius;
+                        var dy = Math.sqrt(3) * radius;
+                        var midYOffset = (cols > 1) ? (dy / 4) : 0;
+
+                        for (var c = 0; c < cols; c++) {
+                            var hx = cx + (c - (cols - 1) / 2) * dx;
+                            var colOffset = (c % 2 === 1) ? (dy / 2) : 0;
+                            for (var r = 0; r < rows; r++) {
+                                var hy = cy + ((rows - 1) / 2 - r) * dy + colOffset - midYOffset;
+                                createHexCell(container, hx, hy, radius, innerSpokes);
+                                hexCount++;
+                            }
+                        }
+                    }
+                } else {
+                    // Llenado de Mesa de Trabajo (artboard) o Selección activa (selection)
+                    var bounds = getTargetBounds(doc, targetScope, cols, rows, radius);
+                    var xMin = Math.min(bounds[0], bounds[2]);
+                    var xMax = Math.max(bounds[0], bounds[2]);
+                    var yMin = Math.min(bounds[1], bounds[3]);
+                    var yMax = Math.max(bounds[1], bounds[3]);
+                    var w = xMax - xMin;
+                    var h = yMax - yMin;
+                    var cx = (xMin + xMax) / 2;
+                    var cy = (yMin + yMax) / 2;
+
+                    if (orientation === "pointy") {
+                        var dx = Math.sqrt(3) * radius;
+                        var dy = 1.5 * radius;
+                        var maxR = Math.ceil((h / 2) / dy) + 1;
+                        var maxC = Math.ceil((w / 2) / dx) + 1;
+
+                        for (var r = -maxR; r <= maxR; r++) {
+                            var hy = cy + r * dy;
+                            var xOffset = ((r % 2 + 2) % 2 === 1) ? (dx / 2) : 0;
+                            for (var c = -maxC - 1; c <= maxC + 1; c++) {
+                                var hx = cx + c * dx + xOffset;
+                                if (hx + radius >= xMin && hx - radius <= xMax && hy + radius >= yMin && hy - radius <= yMax) {
+                                    if (createHexCell(container, hx, hy, radius, innerSpokes, [xMin, yMin, xMax, yMax])) hexCount++;
+                                }
+                            }
+                        }
+                    } else {
+                        // flat-topped
+                        var dx = 1.5 * radius;
+                        var dy = Math.sqrt(3) * radius;
+                        var maxC = Math.ceil((w / 2) / dx) + 1;
+                        var maxR = Math.ceil((h / 2) / dy) + 1;
+
+                        for (var c = -maxC; c <= maxC; c++) {
+                            var hx = cx + c * dx;
+                            var yOffset = ((c % 2 + 2) % 2 === 1) ? (dy / 2) : 0;
+                            for (var r = -maxR - 1; r <= maxR + 1; r++) {
+                                var hy = cy + r * dy + yOffset;
+                                if (hx + radius >= xMin && hx - radius <= xMax && hy + radius >= yMin && hy - radius <= yMax) {
+                                    if (createHexCell(container, hx, hy, radius, innerSpokes, [xMin, yMin, xMax, yMax])) hexCount++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                app.redraw();
+
+                var spokeMsg = innerSpokes ? " con radios internos" : "";
+                return JSONHelper.stringify({
+                    success: true,
+                    type: "Hexagonal",
+                    elementsCount: hexCount,
+                    layerName: layerName,
+                    message: "Malla hexagonal (" + (orientation === "pointy" ? "Vertice vertical" : "Cara plana") + spokeMsg + ") generada con exito (" + hexCount + " celdas cerradas)."
+                });
+
+            } catch (err) {
+                return JSONHelper.stringify({
+                    success: false,
+                    message: "Excepcion al crear malla hexagonal: " + err.toString()
+                });
+            }
+        },
+
+/**
          * Muestrea el color del objeto seleccionado en Illustrator (Cuentagotas nativo)
          */
         pickColorFromSelection: function() {

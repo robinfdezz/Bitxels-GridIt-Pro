@@ -951,11 +951,12 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
-    margin-top: 8px;
+    gap: 3px;
+    margin-top: 10px;
     font-size: 8.5px;
-    color: #505050;
+    color: #606060;
     text-align: center;
+    user-select: none;
 }
 
 .status-pill {
@@ -992,4 +993,10 @@ html, body {
     cursor: not-allowed !important;
     pointer-events: none !important;
     user-select: none !important;
+}
+
+.app-copyright .copyright-version {
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: #808080;
 }
