@@ -38,6 +38,11 @@
         var inputRows = document.getElementById("input-rows");
         var selectScope = document.getElementById("select-scope");
         var toggleDiagonals = document.getElementById("toggle-diagonals");
+        var rowToggleDiagonals = document.getElementById("row-toggle-diagonals");
+        var hexOptionsBlock = document.getElementById("hex-options-block");
+        var selectHexOrientation = document.getElementById("select-hex-orientation");
+        var toggleHexSpokes = document.getElementById("toggle-hex-spokes");
+        var lblSpacing = document.getElementById("lbl-spacing");
         var toggleClearPrev = document.getElementById("toggle-clear-prev");
         var toggleGroupResult = document.getElementById("toggle-group-result");
 
@@ -84,13 +89,31 @@
                 currentType = card.getAttribute("data-type");
 
                 var boxColsRows = document.getElementById("box-cols-rows");
-                if (currentType === "golden") {
+
+                if (currentType === "hexagon") {
+                    if (hexOptionsBlock) hexOptionsBlock.style.display = "flex";
+                    if (rowToggleDiagonals) rowToggleDiagonals.style.display = "none";
+                    if (lblSpacing) lblSpacing.textContent = "Radio / Lado (pt)";
+                    if (boxColsRows) boxColsRows.style.display = "grid";
+                    setStatus("Seleccionado: Malla Hexagonal", true);
+                } else if (currentType === "golden") {
+                    if (hexOptionsBlock) hexOptionsBlock.style.display = "none";
+                    if (rowToggleDiagonals) rowToggleDiagonals.style.display = "none";
+                    if (lblSpacing) lblSpacing.textContent = "Unidad Base (pt)";
                     if (boxColsRows) boxColsRows.style.display = "none";
                     setStatus("Seleccionado: Razon Aurea (Fibonacci)", true);
-                } else {
+                } else if (currentType === "isometric") {
+                    if (hexOptionsBlock) hexOptionsBlock.style.display = "none";
+                    if (rowToggleDiagonals) rowToggleDiagonals.style.display = "none";
+                    if (lblSpacing) lblSpacing.textContent = "Espaciado (pt)";
                     if (boxColsRows) boxColsRows.style.display = "grid";
-                    var nameLabel = currentType.charAt(0).toUpperCase() + currentType.slice(1);
-                    setStatus("Seleccionado: Malla " + nameLabel, true);
+                    setStatus("Seleccionado: Malla Isometrica", true);
+                } else {
+                    if (hexOptionsBlock) hexOptionsBlock.style.display = "none";
+                    if (rowToggleDiagonals) rowToggleDiagonals.style.display = "flex";
+                    if (lblSpacing) lblSpacing.textContent = "Espaciado (pt)";
+                    if (boxColsRows) boxColsRows.style.display = "grid";
+                    setStatus("Seleccionado: Malla Cuadrada", true);
                 }
             });
         });
@@ -398,6 +421,8 @@
                 if (inputCols) inputCols.value = 12;
                 if (inputRows) inputRows.value = 12;
                 if (toggleDiagonals) toggleDiagonals.checked = false;
+                if (selectHexOrientation) selectHexOrientation.value = "pointy";
+                if (toggleHexSpokes) toggleHexSpokes.checked = false;
                 if (toggleClearPrev) toggleClearPrev.checked = true;
                 if (toggleGroupResult) toggleGroupResult.checked = true;
                 activeStrokeColor = "#10B981";
@@ -422,6 +447,8 @@
                 targetScope: selectScope ? selectScope.value : "artboard",
                 makeGuides: asGuides,
                 diagonals: toggleDiagonals ? toggleDiagonals.checked : false,
+                orientation: selectHexOrientation ? selectHexOrientation.value : "pointy",
+                innerSpokes: toggleHexSpokes ? toggleHexSpokes.checked : false,
                 clearPrevious: toggleClearPrev ? toggleClearPrev.checked : true,
                 groupResult: toggleGroupResult ? toggleGroupResult.checked : true,
                 layerName: "BitGrid_Custom_Layer"
@@ -430,6 +457,7 @@
             var method = "generateSquareGrid";
             if (currentType === "isometric") method = "generateIsometricGrid";
             else if (currentType === "golden") method = "generateGoldenCircles";
+            else if (currentType === "hexagon") method = "generateHexagonalGrid";
 
             setStatus("Generando mallas en Illustrator...", true);
 

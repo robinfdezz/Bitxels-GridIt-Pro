@@ -10,6 +10,7 @@ Esta guía detalla exhaustivamente cada una de las funciones implementadas y ope
    - [generateSquareGrid(paramsJson)](#generatesquaregridparamsjson)
    - [generateIsometricGrid(paramsJson)](#generateisometricgridparamsjson)
    - [generateGoldenCircles(paramsJson)](#generategoldencirclesparamsjson)
+   - [generateHexagonalGrid(paramsJson)](#generatehexagonalgridparamsjson)
    - [clearGridLayer(layerName)](#cleargridlayerlayername)
    - [Funciones Auxiliares Internas](#funciones-auxiliares-internas)
 2. [Frontend Controller (client/js/main.js)](#2-frontend-controller-clientjsmainjs)

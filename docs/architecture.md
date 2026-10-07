@@ -92,7 +92,7 @@ El puente de comunicación entre el entorno CEF (JavaScript moderno) y el entorn
 ```
 Bitxels-GridIt-Pro/
 |-- .debug                     # Puertos de depuración remota (DevTools en puerto 8088)
-|-- LICENSE                    # Licencia MIT de código abierto
+|-- LICENSE                    # Licencia de código abierto GNU GPLv3
 |-- README.md                  # Documentación principal del repositorio
 |-- bitxels.svg                # Logotipo vectorial oficial
 |-- CSXS/
