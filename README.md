@@ -10,7 +10,7 @@
 
   [![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-CC%202022--2026%2B-FF9A00?style=for-the-badge&logo=adobeillustrator&logoColor=white)](https://www.adobe.com/products/illustrator.html)
   [![CEP Runtime](https://img.shields.io/badge/CEP%20Runtime-9.0--12.0-00C8FF?style=for-the-badge)](https://github.com/Adobe-CEP)
-  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.3.0-10b981?style=for-the-badge)](CHANGELOG.md)](docs/versions.md)
+  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.3.0-10b981?style=for-the-badge)](CHANGELOG.md)
   [![Licencia](https://img.shields.io/badge/Licencia-GPL--3.0-10b981?style=for-the-badge)](LICENSE)
   [![Platform](https://img.shields.io/badge/Plataforma-Windows%20%7C%20macOS-gray?style=for-the-badge)](https://github.com/robinfdezz/Bitxels-GridIt-Pro)
 
@@ -291,11 +291,11 @@ Consulta [docs/architecture.md](docs/architecture.md) para detalles completos de
 - [x] **v0.1.4:** Redise&ntilde;o visual integral estilo Akrivi Studio (tarjetas flotantes oscuras).
 - [x] **v0.1.5:** Identidad de marca **Bitxels Grid**, integraci&oacute;n de logotipo SVG y filtro de claridad (20% opacidad).
 - [x] **v0.2.0:** Concurrencia isom&eacute;trica de estrella de 6 puntas, selector de color popover con cuentagotas para Illustrator, gesti&oacute;n multi-mesa aislada y homologaci&oacute;n est&eacute;tica verde.
-- [ ] **v0.2.5:** Algoritmo de Malla Hexagonal param&eacute;trica y mallas polares/radiales con &aacute;ngulos configurables.
-- [ ] **v0.3.0:** M&oacute;dulo de Cotas y Construcci&oacute;n (*Anchors*, *Handles*, *Outlines*) para exportar manuales de marca.
-- [ ] **v0.4.0:** Creador autom&aacute;tico de &Aacute;reas de Reserva (*Clearspace*) seg&uacute;n la altura `x` del logotipo.
+- [x] **v0.3.0:** Malla Hexagonal modular param&eacute;trica (orientaci&oacute;n vertical u horizontal, celdas vectoriales cerradas individuales y subdivisi&oacute;n interna opcional en 6 tri&aacute;ngulos equil&aacute;teros con recorte al lienzo). Licencia oficial GNU GPLv3 y gu&iacute;a de uso r&aacute;pida.
+- [ ] **v0.4.0:** M&oacute;dulo de Cotas y Construcci&oacute;n (*Anchors*, *Handles*, *Outlines*) para exportar manuales de marca.
+- [ ] **v0.5.0:** Creador autom&aacute;tico de &Aacute;reas de Reserva (*Clearspace*) seg&uacute;n la altura `x` del logotipo.
 
-Para consultar el registro hist&oacute;rico completo, revisa [docs/versions.md](docs/versions.md).
+Para consultar el registro hist&oacute;rico completo de todas las versiones, revisa [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
