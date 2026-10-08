@@ -4,6 +4,30 @@ Todos los cambios notables de este proyecto están documentados en este archivo 
 
 ---
 
+## [v0.4.0] - 2026-10-08
+### Módulo de Construcción Vectorial, Componentes UI Personalizados y Optimización Base
+- **Módulo de Construcción (Construction Module):**
+  - Integrado submódulo completo para ingeniería inversa y documentación de geometría de logotipos.
+  - 8 componentes de inspección vectorial: Horizontales, Verticales, Diagonales, Círculos Constructivos, Puntos de Ancla, Manejadores Bezier, Contornos y Cotas.
+  - Generación de círculos constructivos basados en curvatura real en puntos de ancla.
+  - Manejadores vectoriales independientes con cabezales y líneas guía directas.
+  - Soporte de relleno técnico "fantasma" (*Ghost Fill*) con opacidad ajustable independiente.
+  - Selector de agrupación por capas separadas o capa técnica unificada.
+  - Edición reactiva selectiva por propiedad (`changedProperty`) que permite afinar atributos de un grupo de elementos sin recalcular el resto.
+  - Memoria caché local (`localStorage`) para persistir la configuración completa entre sesiones.
+- **Componentes UI Reutilizables de Alta Gama:**
+  - **Dropdown Personalizado (`.custom-dropdown`):** Eliminación total de menús emergentes nativos del sistema operativo y su resaltado azul predeterminado. Menú flotante 100% CSS en tema oscuro (`#161619`), hover refinado (`#232328`), resplandor esmeralda (`#10B981`) y checkmark de selección activa, con sincronización transparente bidireccional sobre los elementos `<select>`.
+  - **Stepper Numérico Universal (`initGlobalNumberInputSteppers`):** Soporte global en todos los inputs numéricos para subir y bajar valores con la ruedita del ratón (`wheel`) y flechas de teclado (`ArrowUp` / `ArrowDown`), con soporte para `Shift` (saltos de 10) y `Alt` (ajuste fino decimal).
+  - **Fila Unificada en Personalizar:** Reorganización horizontal con Columnas y Filas a la izquierda y Color de Trazo a la derecha, alineados a nivel superior con tipografía técnica uniforme.
+- **Correcciones y Refuerzos de Estabilidad:**
+  - Corregido `ReferenceError: opacity no está definido` en las funciones de malla Isométrica, Razón Áurea y Hexagonal en `jsx/hostScript.jsx`.
+  - Implementado `GridItHost.hasBaseGrid` para evitar que se dibuje una retícula automáticamente al navegar a la sub-pestaña Personalizar si aún no existe nada generado en el documento.
+  - Aislamiento defensivo (`try/catch`) en el bootstrapping de submódulos para garantizar resiliencia total de la interfaz.
+
+---
+
+
+
 ## [v0.3.0] - 2026-10-07
 ### Nueva Funcionalidad: Malla Hexagonal Modular (Honeycomb Grid)
 - **Frontend Interactivo:**

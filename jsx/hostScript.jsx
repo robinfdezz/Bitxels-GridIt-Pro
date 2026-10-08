@@ -1,3 +1,5 @@
+//@include "constructionHost.jsx"
+
 /**
  * BitGrid Pro - Motor Backend ExtendScript
  * Target: Adobe Illustrator (CC 2022 - 2026+)
@@ -229,7 +231,7 @@ var GridItHost = (function () {
         return null;
     }
 
-    function applyPathStyle(pathItem, isGuide, strokeW, strokeColorHex) {
+    function applyPathStyle(pathItem, isGuide, strokeW, strokeColorHex, opacity) {
         if (isGuide) {
             pathItem.guides = true;
             pathItem.filled = false;
@@ -245,6 +247,9 @@ var GridItHost = (function () {
             col.green = rgb.g;
             col.blue = rgb.b;
             pathItem.strokeColor = col;
+            if (typeof opacity === "number" && opacity >= 0 && opacity <= 100) {
+                pathItem.opacity = opacity;
+            }
         }
     }
 
@@ -263,6 +268,100 @@ var GridItHost = (function () {
                 hasDocument: true,
                 documentName: doc.name,
                 artboardsCount: doc.artboards.length
+            });
+        },
+
+        hasBaseGrid: function (layerName) {
+            var doc = getActiveDocument();
+            if (!doc) return "false";
+            var target = layerName || "BitGrid_Custom_Layer";
+            for (var l = 0; l < doc.layers.length; l++) {
+                if (doc.layers[l].name === target && doc.layers[l].pageItems.length > 0) {
+                    return "true";
+                }
+            }
+            return "false";
+        },
+
+        updateBaseGridStyles: function (paramsJson) {
+            var params = (typeof paramsJson === "string") ? JSONHelper.parse(paramsJson) : paramsJson;
+            var doc = getActiveDocument();
+            if (!doc) {
+                return JSONHelper.stringify({
+                    success: false,
+                    message: "No hay documento abierto."
+                });
+            }
+
+            var layerName = params.layerName || "BitGrid_Custom_Layer";
+            var targetLayer = null;
+            for (var l = 0; l < doc.layers.length; l++) {
+                if (doc.layers[l].name === layerName) {
+                    targetLayer = doc.layers[l];
+                    break;
+                }
+            }
+
+            if (!targetLayer || targetLayer.pageItems.length === 0) {
+                return JSONHelper.stringify({
+                    success: true,
+                    updatedCount: 0,
+                    needRegenerate: true
+                });
+            }
+
+            var strokeW = Number(params.strokeWidth) || 0.5;
+            var strokeColor = params.strokeColor || "#10B981";
+            var opacity = (typeof params.opacity === "number") ? params.opacity : 100;
+
+            var rgb = parseHexToRgb(strokeColor);
+            var col = new RGBColor();
+            col.red = rgb.r;
+            col.green = rgb.g;
+            col.blue = rgb.b;
+
+            var abIndex = doc.artboards.getActiveArtboardIndex();
+            var abRect = doc.artboards[abIndex].artboardRect;
+            var abL = abRect[0];
+            var abT = abRect[1];
+            var abR = abRect[2];
+            var abB = abRect[3];
+
+            function applyToItem(item) {
+                if (item.typename === "GroupItem") {
+                    for (var g = 0; g < item.pageItems.length; g++) {
+                        applyToItem(item.pageItems[g]);
+                    }
+                } else if (item.typename === "PathItem" || item.typename === "CompoundPathItem") {
+                    if (!item.guides) {
+                        item.stroked = true;
+                        item.filled = false;
+                        item.strokeWidth = strokeW;
+                        item.strokeColor = col;
+                        item.opacity = opacity;
+                    }
+                }
+            }
+
+            var count = 0;
+            for (var i = 0; i < targetLayer.pageItems.length; i++) {
+                var pItem = targetLayer.pageItems[i];
+                try {
+                    var b = pItem.visibleBounds;
+                    var outsideAb = (b[2] < abL || b[0] > abR || b[3] > abT || b[1] < abB);
+                    if (!outsideAb) {
+                        applyToItem(pItem);
+                        count++;
+                    }
+                } catch(e) {}
+            }
+
+            app.redraw();
+
+            return JSONHelper.stringify({
+                success: true,
+                updatedCount: count,
+                needRegenerate: (count === 0)
             });
         },
 
@@ -285,6 +384,7 @@ var GridItHost = (function () {
                 var diagonals = !!params.diagonals;
                 var strokeW = Number(params.strokeWidth) || 0.5;
                 var strokeColor = params.strokeColor || "#10B981";
+                var opacity = (typeof params.opacity === "number") ? params.opacity : 100;
 
                 var targetLayer = getOrCreateLayer(doc, layerName);
                 clearTargetScopeItems(targetLayer, params.targetScope || "artboard", doc, clearPrev);
@@ -307,7 +407,7 @@ var GridItHost = (function () {
                 for (var x = left; x <= right + 0.1; x += spacing) {
                     var vLine = container.pathItems.add();
                     vLine.setEntirePath([[x, top], [x, bottom]]);
-                    applyPathStyle(vLine, isGuide, strokeW, strokeColor);
+                    applyPathStyle(vLine, isGuide, strokeW, strokeColor, opacity);
                     lineCount++;
                 }
 
@@ -315,7 +415,7 @@ var GridItHost = (function () {
                 for (var y = top; y >= bottom - 0.1; y -= spacing) {
                     var hLine = container.pathItems.add();
                     hLine.setEntirePath([[left, y], [right, y]]);
-                    applyPathStyle(hLine, isGuide, strokeW, strokeColor);
+                    applyPathStyle(hLine, isGuide, strokeW, strokeColor, opacity);
                     lineCount++;
                 }
 
@@ -323,11 +423,11 @@ var GridItHost = (function () {
                 if (diagonals) {
                     var diag1 = container.pathItems.add();
                     diag1.setEntirePath([[left, top], [right, bottom]]);
-                    applyPathStyle(diag1, isGuide, strokeW, strokeColor);
+                    applyPathStyle(diag1, isGuide, strokeW, strokeColor, opacity);
 
                     var diag2 = container.pathItems.add();
                     diag2.setEntirePath([[left, bottom], [right, top]]);
-                    applyPathStyle(diag2, isGuide, strokeW, strokeColor);
+                    applyPathStyle(diag2, isGuide, strokeW, strokeColor, opacity);
                     lineCount += 2;
                 }
 
@@ -367,6 +467,7 @@ var GridItHost = (function () {
                 var shouldGroup = (params.groupResult !== false);
                 var strokeW = Number(params.strokeWidth) || 0.5;
                 var strokeColor = params.strokeColor || "#10B981";
+                var opacity = (typeof params.opacity === "number") ? params.opacity : 100;
 
                 var targetLayer = getOrCreateLayer(doc, layerName);
                 clearTargetScopeItems(targetLayer, params.targetScope || "artboard", doc, clearPrev);
@@ -410,7 +511,7 @@ var GridItHost = (function () {
                     var vx = xCoords[i];
                     var vLine = container.pathItems.add();
                     vLine.setEntirePath([[vx, yMax], [vx, yMin]]);
-                    applyPathStyle(vLine, isGuide, strokeW, strokeColor);
+                    applyPathStyle(vLine, isGuide, strokeW, strokeColor, opacity);
                     lineCount++;
                 }
 
@@ -428,7 +529,7 @@ var GridItHost = (function () {
                     if (ptsUp) {
                         var isoUp = container.pathItems.add();
                         isoUp.setEntirePath(ptsUp);
-                        applyPathStyle(isoUp, isGuide, strokeW, strokeColor);
+                        applyPathStyle(isoUp, isGuide, strokeW, strokeColor, opacity);
                         lineCount++;
                     }
                 }
@@ -442,7 +543,7 @@ var GridItHost = (function () {
                     if (ptsDown) {
                         var isoDown = container.pathItems.add();
                         isoDown.setEntirePath(ptsDown);
-                        applyPathStyle(isoDown, isGuide, strokeW, strokeColor);
+                        applyPathStyle(isoDown, isGuide, strokeW, strokeColor, opacity);
                         lineCount++;
                     }
                 }
@@ -483,6 +584,7 @@ var GridItHost = (function () {
                 var strokeW = Number(params.strokeWidth) || 0.5;
                 var strokeColor = params.strokeColor || "#10B981";
                 var baseUnit = Number(params.spacing) || 30;
+                var opacity = (typeof params.opacity === "number") ? params.opacity : 100;
 
                 var targetLayer = getOrCreateLayer(doc, layerName);
                 clearTargetScopeItems(targetLayer, params.targetScope || "artboard", doc, clearPrev);
@@ -510,18 +612,18 @@ var GridItHost = (function () {
                         diameter,
                         diameter
                     );
-                    applyPathStyle(circle, isGuide, strokeW, strokeColor);
+                    applyPathStyle(circle, isGuide, strokeW, strokeColor, opacity);
                     count++;
                 }
 
                 var crosshairSize = baseUnit * 2;
                 var hCross = container.pathItems.add();
                 hCross.setEntirePath([[centerX - crosshairSize, centerY], [centerX + crosshairSize, centerY]]);
-                applyPathStyle(hCross, isGuide, strokeW, strokeColor);
+                applyPathStyle(hCross, isGuide, strokeW, strokeColor, opacity);
 
                 var vCross = container.pathItems.add();
                 vCross.setEntirePath([[centerX, centerY + crosshairSize], [centerX, centerY - crosshairSize]]);
-                applyPathStyle(vCross, isGuide, strokeW, strokeColor);
+                applyPathStyle(vCross, isGuide, strokeW, strokeColor, opacity);
                 count += 2;
 
                 app.redraw();
@@ -571,6 +673,7 @@ var GridItHost = (function () {
                 var shouldGroup = (params.groupResult !== false);
                 var strokeW = Number(params.strokeWidth) || 0.5;
                 var strokeColor = params.strokeColor || "#10B981";
+                var opacity = (typeof params.opacity === "number") ? params.opacity : 100;
                 var targetScope = params.targetScope || "artboard";
                 var cols = Math.max(1, parseInt(params.cols, 10) || 12);
                 var rows = Math.max(1, parseInt(params.rows, 10) || 12);
@@ -666,7 +769,7 @@ var GridItHost = (function () {
                     var hexItem = parentGroup.pathItems.add();
                     hexItem.setEntirePath(finalPts);
                     hexItem.closed = true;
-                    applyPathStyle(hexItem, isGuide, strokeW, strokeColor);
+                    applyPathStyle(hexItem, isGuide, strokeW, strokeColor, opacity);
 
                     if (withSpokes) {
                         for (var s = 0; s < 3; s++) {
@@ -679,7 +782,7 @@ var GridItHost = (function () {
                             if (spokePts) {
                                 var spoke = parentGroup.pathItems.add();
                                 spoke.setEntirePath(spokePts);
-                                applyPathStyle(spoke, isGuide, strokeW, strokeColor);
+                                applyPathStyle(spoke, isGuide, strokeW, strokeColor, opacity);
                             }
                         }
                     }

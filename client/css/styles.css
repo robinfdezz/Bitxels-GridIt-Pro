@@ -4,6 +4,12 @@
    ========================================================================== */
 
 :root {
+    --text-main: #f5f5f5;
+    --bg-item: #212121;
+    --bg-item-hover: #2e2e2e;
+    --border-color: #303030;
+    --border-hover: #484848;
+    --radius-square: 4px;
     --bg-window: #222222;
     --bg-card: #181818;
     --border-card: #282828;
@@ -274,6 +280,18 @@ html, body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
+#view-base-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeInBase 0.15s ease-out;
+}
+
+@keyframes fadeInBase {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* ==========================================================================
    4. The 4-Item Grid Selector Row (Square, Isometric, Hexagon, GoldenRt)
    ========================================================================== */
@@ -281,21 +299,23 @@ html, body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 6px;
+    margin-bottom: 2px;
 }
 
 .quad-item {
-    background-color: var(--bg-item-card);
-    border: 1px solid #252525;
-    border-radius: var(--radius-md);
-    padding: 10px 3px 8px;
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-square);
+    padding: 8px 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
     cursor: pointer;
-    color: var(--text-gray);
-    transition: var(--transition);
+    transition: all 0.15s ease;
+    user-select: none;
+    min-height: 58px;
     outline: none;
 }
 
@@ -303,33 +323,43 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 24px;
-    color: var(--green-primary);
-    transition: var(--transition);
+    color: var(--text-gray);
+    transition: color 0.15s ease;
 }
 
 .quad-item .quad-label {
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 500;
-    color: #d1d5db;
+    color: var(--text-gray);
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .quad-item:hover {
     background-color: var(--bg-item-hover);
-    border-color: #3a3a3a;
-    color: #ffffff;
+    border-color: var(--border-hover);
+}
+
+.quad-item:hover .quad-icon {
+    color: var(--text-main);
+}
+
+.quad-item:hover .quad-label {
+    color: var(--text-main);
 }
 
 .quad-item.active {
-    background-color: var(--bg-item-active);
+    background-color: rgba(16, 185, 129, 0.12);
     border-color: var(--green-primary);
-    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4);
+    box-shadow: none;
 }
 
 .quad-item.active .quad-icon {
-    color: #34d399;
-    transform: scale(1.05);
+    color: var(--green-primary);
+    transform: none;
 }
 
 .quad-item.active .quad-label {
@@ -465,7 +495,7 @@ html, body {
     gap: 6px;
 }
 
-.swatch-btn {
+.swatch-btn, .swatch-btn-con, .swatch-btn-con-fill {
     width: 15px;
     height: 15px;
     border-radius: 3.5px; /* Cuadrito redondeado */
@@ -477,12 +507,12 @@ html, body {
     box-sizing: border-box;
 }
 
-.swatch-btn:hover {
+.swatch-btn:hover, .swatch-btn-con:hover, .swatch-btn-con-fill:hover {
     transform: scale(1.18);
     border-color: #ffffff;
 }
 
-.swatch-btn.active {
+.swatch-btn.active, .swatch-btn-con.active, .swatch-btn-con-fill.active {
     box-shadow: 0 0 0 2px #222222, 0 0 0 3.5px var(--blue-primary);
     transform: scale(1.08);
     border-radius: 3.5px;
@@ -773,7 +803,10 @@ html, body {
 
 .input-box label {
     font-size: 9.5px;
-    color: #888888;
+    color: #8c8c94;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
 }
 
 .input-box input,
@@ -999,4 +1032,322 @@ html, body {
     font-weight: 600;
     letter-spacing: 0.6px;
     color: #808080;
+}
+
+/* ==========================================================================
+   Fila Unificada: Columnas y Filas (Izquierda), Color de Trazo (Derecha)
+   ========================================================================== */
+.form-row-color-cols-rows {
+    display: flex;
+    align-items: flex-start; /* Alineación horizontal uniforme en la parte superior */
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cols-rows-subgroup {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.color-field-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.color-field-block .swatch-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px; /* Misma altura de los inputs para alineación visual exacta */
+}
+
+.field-label-compact,
+.input-box-compact label {
+    font-size: 9.5px;
+    color: #8c8c94;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    white-space: nowrap;
+    line-height: 14px;
+    height: 14px;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.input-box-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 50px;
+}
+
+/* ==========================================================================
+   Mejora Visual Global de Inputs (Actuales y Futuros)
+   ========================================================================== */
+input[type="number"],
+.input-box input,
+.input-box-compact input {
+    width: 100%;
+    height: 24px;
+    background-color: #131316;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    color: #f3f4f6;
+    font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    padding: 2px 4px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    cursor: text;
+}
+
+input[type="number"]:hover,
+.input-box input:hover,
+.input-box-compact input:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background-color: #18181c;
+}
+
+input[type="number"]:focus,
+.input-box input:focus,
+.input-box-compact input:focus {
+    border-color: var(--green-primary, #10B981);
+    background-color: #111113;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Ocultar flechas de incremento/decremento nativas del navegador */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Componente Reutilizable: Select Personalizado (Custom Select Dropdown)
+   Aplica a todos los <select> actuales y futuros
+   ========================================================================== */
+.custom-select,
+.input-box select,
+select {
+    width: 100%;
+    height: 26px;
+    background-color: #131316;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238c8c94' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 11px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    color: #f3f4f6;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 24px 3px 8px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.custom-select:hover,
+.input-box select:hover,
+select:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background-color: #18181c;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.custom-select:focus,
+.input-box select:focus,
+select:focus {
+    border-color: var(--green-primary, #10B981);
+    background-color: #121214;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Estilos para el desplegable de opciones */
+.custom-select option,
+.input-box select option,
+select option {
+    background-color: #1a1a1d;
+    color: #e5e7eb;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.custom-select option:hover,
+.custom-select option:checked,
+select option:hover,
+select option:checked {
+    background-color: #27272a;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Componente Dropdown Personalizado (Zero OS Blue / 100% Dark Theme)
+   ========================================================================== */
+.custom-select-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+    user-select: none;
+}
+
+.custom-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 26px;
+    background-color: #131316;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    padding: 0 8px 0 10px;
+    color: #f3f4f6;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.15s ease-in-out;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.custom-dropdown-trigger:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    background-color: #18181c;
+}
+
+.custom-dropdown-trigger:hover .custom-dropdown-chevron {
+    stroke: #ffffff;
+}
+
+.custom-dropdown.open .custom-dropdown-trigger,
+.custom-dropdown-trigger:focus {
+    border-color: var(--green-primary, #10B981);
+    background-color: #121214;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dropdown.open .custom-dropdown-chevron {
+    transform: rotate(180deg);
+    stroke: var(--green-primary, #10B981);
+}
+
+.custom-dropdown-text {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 6px;
+}
+
+.custom-dropdown-chevron {
+    flex-shrink: 0;
+    stroke: #8c8c94;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.15s ease;
+}
+
+/* Menú flotante del desplegable */
+.custom-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: #161619;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75), 0 2px 6px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    animation: fadeInDropdown 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Opciones del desplegable */
+.custom-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #232328;
+    color: #ffffff;
+}
+
+.custom-dropdown-item.active {
+    background-color: rgba(16, 185, 129, 0.14);
+    color: #10B981;
+    font-weight: 600;
+}
+
+.custom-dropdown-check {
+    opacity: 0;
+    stroke: #10B981;
+    margin-left: 6px;
+    flex-shrink: 0;
+    transition: opacity 0.12s ease;
+}
+
+.custom-dropdown-item.active .custom-dropdown-check {
+    opacity: 1;
 }

@@ -20,6 +20,7 @@
     </script>
 
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/construction.css">
 </head>
 <body style="background-color: #222222; color: #f5f5f5; margin: 0; padding: 0;">
     <div id="app" class="app-wrapper">
@@ -68,11 +69,20 @@
             <!-- 3. Control Segmentado Píldora: Base es funcional, Construcción y Reserva al 20% de opacidad -->
             <div class="segmented-control">
                 <button class="segment-btn active" data-segment="base" id="seg-base">Base</button>
-                <button class="segment-btn disabled-feature" data-functional="false" id="seg-construction" title="Pr&oacute;ximamente">Construcci&oacute;n</button>
+                <button class="segment-btn" data-segment="construction" id="seg-construction">Construcci&oacute;n</button>
                 <button class="segment-btn disabled-feature" data-functional="false" id="seg-clearspace" title="Pr&oacute;ximamente">&Aacute;rea de Reserva</button>
             </div>
 
-            <!-- 4. Cuadrícula de 4 Ítems: Cuadrada, Isométrica y Razón Áurea activas. Hexagonal al 20% -->
+            
+            <!-- VISTA A: MÓDULO BASE (Retículas de Logo) -->
+            <div id="view-base-container">
+<!-- 4. Cuadrícula de 4 Ítems: Cuadrada, Isométrica y Razón Áurea activas. Hexagonal al 20% -->
+            <!-- Sub-pestañas de Base: Cuadrículas vs Personalizar -->
+            <div class="construction-subtabs" id="base-subtabs">
+                <button class="con-subtab-btn active" id="base-subtab-grids">Cuadr&iacute;culas</button>
+                <button class="con-subtab-btn" id="base-subtab-customize">Personalizar</button>
+            </div>
+
             <div class="quad-grid" id="view-base-quad">
                 <!-- Cuadrada (Activa 100%) -->
                 <button class="quad-item active" data-type="square" id="card-square">
@@ -128,20 +138,8 @@
                 </button>
             </div>
 
-            <!-- 5. Acordeón Desplegable: Personalizar (100% Funcional con todos los controles) -->
-            <div class="accordion-wrapper open" id="accordion-customize">
-                <div class="accordion-header" id="btn-toggle-accordion">
-                    <div class="accordion-title">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 20h9"/>
-                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                        </svg>
-                        <span>Personalizar</span>
-                    </div>
-                    <span class="accordion-chevron">&#9656;</span>
-                </div>
-
-                <div class="accordion-body">
+            <!-- Panel 2: Personalizar de Base (Sub-pestaña) -->
+            <div class="con-customize-panel" id="panel-base-customize" style="display: none;">
                     <!-- Slider de Espaciado -->
                     <div class="slider-row">
                         <div class="slider-labels">
@@ -160,24 +158,48 @@
                         <input type="range" class="range-slider" id="slider-stroke-width" min="0.1" max="5.0" value="0.5" step="0.1">
                     </div>
 
-                    <!-- Paleta de Color de Trazo (Swatches) -->
-                    <div class="swatch-row">
-                        <span class="swatch-label">Color de Trazo</span>
-                        <div class="swatch-group">
-                            <button type="button" class="swatch-btn active" data-color="#10B981" style="background-color: #10B981;" title="Verde Esmeralda"></button>
-                            <button type="button" class="swatch-btn" data-color="#00E676" style="background-color: #00E676;" title="Verde Ne&oacute;n"></button>
-                            <button type="button" class="swatch-btn" data-color="#00C8FF" style="background-color: #00C8FF;" title="Cian"></button>
-                            <button type="button" class="swatch-btn" data-color="#FF007F" style="background-color: #FF007F;" title="Magenta"></button>
-                            <button type="button" class="swatch-btn" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="Blanco"></button>
-                            <button type="button" class="swatch-btn" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Negro"></button>
-                            <button type="button" class="color-picker-btn" id="btn-toggle-color-picker" title="Color personalizado">
-                                <svg class="color-picker-icon-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 3.1 7 7 7h1.5c.8 0 1.5.7 1.5 1.5 0 .4-.2.8-.4 1.1-.3.3-.4.7-.4 1.1 0 .8.7 1.5 1.5 1.5 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
-                                    <circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/>
-                                    <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
-                                    <circle cx="16.5" cy="11.5" r="1.2" fill="currentColor"/>
-                                </svg>
-                            </button>
+                    <!-- Slider de Opacidad de Trazo -->
+                    <div class="slider-row">
+                        <div class="slider-labels">
+                            <span>Opacidad de Trazo (%)</span>
+                            <span class="slider-value" id="val-base-stroke-op">100%</span>
+                        </div>
+                        <input type="range" class="range-slider" id="slider-base-stroke-op" min="10" max="100" value="100" step="5">
+                    </div>
+
+                    <!-- Fila Unificada: Columnas/Filas a la izquierda, Color a la derecha -->
+                    <div class="form-row-color-cols-rows" id="row-color-cols-rows">
+                        <!-- 1. Columnas y 2. Filas (Izquierda) -->
+                        <div class="cols-rows-subgroup" id="box-cols-rows">
+                            <div class="input-box-compact">
+                                <label for="input-cols">Columnas</label>
+                                <input type="number" id="input-cols" value="12" min="1" max="100">
+                            </div>
+                            <div class="input-box-compact">
+                                <label for="input-rows">Filas</label>
+                                <input type="number" id="input-rows" value="12" min="1" max="100">
+                            </div>
+                        </div>
+
+                        <!-- 3. Color de Trazo (Derecha) -->
+                        <div class="color-field-block">
+                            <span class="field-label-compact">Color Trazo</span>
+                            <div class="swatch-group">
+                                <button type="button" class="swatch-btn active" data-color="#10B981" style="background-color: #10B981;" title="Verde Esmeralda"></button>
+                                <button type="button" class="swatch-btn" data-color="#00E676" style="background-color: #00E676;" title="Verde Ne&oacute;n"></button>
+                                <button type="button" class="swatch-btn" data-color="#00C8FF" style="background-color: #00C8FF;" title="Cian"></button>
+                                <button type="button" class="swatch-btn" data-color="#FF007F" style="background-color: #FF007F;" title="Magenta"></button>
+                                <button type="button" class="swatch-btn" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="Blanco"></button>
+                                <button type="button" class="swatch-btn" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Negro"></button>
+                                <button type="button" class="color-picker-btn" id="btn-toggle-color-picker" title="Color personalizado">
+                                    <svg class="color-picker-icon-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 3.1 7 7 7h1.5c.8 0 1.5.7 1.5 1.5 0 .4-.2.8-.4 1.1-.3.3-.4.7-.4 1.1 0 .8.7 1.5 1.5 1.5 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
+                                        <circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                        <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+                                        <circle cx="16.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -239,22 +261,10 @@
                         </div>
                     </div>
 
-                    <!-- Columnas y Filas -->
-                    <div class="form-grid-2" id="box-cols-rows">
-                        <div class="input-box">
-                            <label>Columnas</label>
-                            <input type="number" id="input-cols" value="12" min="1" max="100">
-                        </div>
-                        <div class="input-box">
-                            <label>Filas</label>
-                            <input type="number" id="input-rows" value="12" min="1" max="100">
-                        </div>
-                    </div>
-
                     <!-- Área de Destino -->
                     <div class="input-box">
                         <label>&Aacute;rea de Aplicaci&oacute;n</label>
-                        <select id="select-scope">
+                        <select id="select-scope" class="custom-select">
                             <option value="artboard" selected>Mesa de Trabajo Activa</option>
                             <option value="selection">L&iacute;mites de Selecci&oacute;n</option>
                             <option value="custom">Matriz Centrada</option>
@@ -274,7 +284,7 @@
                     <div id="hex-options-block" style="display: none; flex-direction: column; gap: 8px;">
                         <div class="input-box">
                             <label>Orientaci&oacute;n Hexagonal</label>
-                            <select id="select-hex-orientation">
+                            <select id="select-hex-orientation" class="custom-select">
                                 <option value="pointy" selected>V&eacute;rtice Vertical (Pointy-topped)</option>
                                 <option value="flat">Cara Plana Horizontal (Flat-topped)</option>
                             </select>
@@ -304,7 +314,6 @@
                         </label>
                     </div>
                 </div>
-            </div>
 
             <!-- 6. Botones de Acción (Make Guides & Generate - 100% Funcionales) -->
             <div class="card-actions">
@@ -354,6 +363,337 @@
                     <span>Compartir</span>
                 </button>
             </div>
+            </div>
+
+            <!-- VISTA B: MÓDULO DE CONSTRUCCIÓN (Geometry Breakdown) -->
+            <div id="view-construction-container" style="display: none;">
+                <!-- Sub-navegación: Elementos vs Personalizar -->
+                <div class="construction-subtabs">
+                    <button class="con-subtab-btn active" id="con-subtab-elements">Elementos</button>
+                    <button class="con-subtab-btn" id="con-subtab-customize">Personalizar</button>
+                </div>
+
+                <!-- Panel 1: Cuadrícula de 8 Tarjetas -->
+                <div class="con-grid-8" id="con-panel-elements">
+                    <!-- Fila 1: Proyección y Arcos -->
+                    <button class="con-card" data-con="horizontals" id="card-con-horizontals">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="4" y1="7" x2="20" y2="7"/>
+                                <line x1="4" y1="12" x2="20" y2="12"/>
+                                <line x1="4" y1="17" x2="20" y2="17"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Horizontales</span>
+                    </button>
+
+                    <button class="con-card" data-con="verticals" id="card-con-verticals">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="7" y1="4" x2="7" y2="20"/>
+                                <line x1="12" y1="4" x2="12" y2="20"/>
+                                <line x1="17" y1="4" x2="17" y2="20"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Verticales</span>
+                    </button>
+
+                    <button class="con-card" data-con="diagonals" id="card-con-diagonals">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="5" y1="19" x2="13" y2="5"/>
+                                <line x1="11" y1="19" x2="19" y2="5"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Diagonales</span>
+                    </button>
+
+                    <button class="con-card" data-con="circles" id="card-con-circles">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <circle cx="9" cy="14" r="5.5"/>
+                                <circle cx="15" cy="10" r="5.5"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">C&iacute;rculos</span>
+                    </button>
+
+                    <!-- Fila 2: Anatomía de Puntos y Cotas -->
+                    <button class="con-card active" data-con="anchors" id="card-con-anchors">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <line x1="3" y1="12" x2="9" y2="12"/>
+                                <rect x="9" y="9" width="6" height="6" rx="1"/>
+                                <line x1="15" y1="12" x2="21" y2="12"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Anclas</span>
+                    </button>
+
+                    <button class="con-card" data-con="handles" id="card-con-handles">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <circle cx="6" cy="12" r="2.5"/>
+                                <line x1="8.5" y1="12" x2="14.5" y2="12"/>
+                                <rect x="14.5" y="9.5" width="5" height="5" rx="1"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Manejadores</span>
+                    </button>
+
+                    <button class="con-card active" data-con="outlines" id="card-con-outlines">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                                <rect x="9" y="9" width="6" height="6" rx="1"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Contornos</span>
+                    </button>
+
+                    <button class="con-card" data-con="spacing" id="card-con-spacing">
+                        <div class="con-card-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                <line x1="4" y1="6" x2="4" y2="18"/>
+                                <line x1="20" y1="6" x2="20" y2="18"/>
+                                <line x1="4" y1="12" x2="20" y2="12"/>
+                            </svg>
+                        </div>
+                        <span class="con-card-label">Espaciado</span>
+                    </button>
+                </div>
+
+                <!-- Panel 2: Personalizar Parámetros de Construcción (Potenciado) -->
+                <div class="con-customize-panel" id="con-panel-customize" style="display: none;">
+                    <!-- Paleta de Color de Trazo Técnico (Swatches + Eyedropper) -->
+                    <div class="swatch-row">
+                        <span class="swatch-label">Color de Trazo T&eacute;cnico</span>
+                        <div class="swatch-group">
+                            <button type="button" class="swatch-btn-con active" data-color="#10B981" style="background-color: #10B981;" title="Verde Esmeralda"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#00E676" style="background-color: #00E676;" title="Verde Ne&oacute;n"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#00C8FF" style="background-color: #00C8FF;" title="Cian T&eacute;cnico"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#FF007F" style="background-color: #FF007F;" title="Magenta"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#3B82F6" style="background-color: #3B82F6;" title="Azul El&eacute;ctrico"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="Blanco"></button>
+                            <button type="button" class="swatch-btn-con" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Negro"></button>
+                            <button type="button" class="color-picker-btn" id="btn-toggle-color-picker-con" title="Color personalizado">
+                                <svg class="color-picker-icon-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 3.1 7 7 7h1.5c.8 0 1.5.7 1.5 1.5 0 .4-.2.8-.4 1.1-.3.3-.4.7-.4 1.1 0 .8.7 1.5 1.5 1.5 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
+                                    <circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="16.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Popover de Color para Trazo de Construcción -->
+                    <div class="color-popover" id="color-popover-con" style="display: none;">
+                        <div class="color-popover-header">
+                            <span class="color-popover-title">Color de Trazo T&eacute;cnico</span>
+                            <button type="button" class="color-popover-close" id="btn-close-color-popover-con" title="Cerrar">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="color-tools-row">
+                            <button type="button" class="color-eyedropper-btn" id="btn-eyedropper-con" title="Cuentagotas (Muestrear color del trazo en Illustrator)">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2l4 4L7 17H3v-4L14 2z"/>
+                                    <path d="M14 6l4 4"/>
+                                    <line x1="2" y1="22" x2="5" y2="19"/>
+                                </svg>
+                            </button>
+                            <div class="color-current-preview" id="color-current-preview-con" style="background-color: #10B981;"></div>
+                            <div class="color-hex-wrapper">
+                                <span class="color-hex-prefix">#</span>
+                                <input type="text" class="color-hex-input" id="input-hex-val-con" value="10B981" maxlength="6" spellcheck="false">
+                            </div>
+                            <button type="button" class="btn-apply-color" id="btn-apply-color-con">OK</button>
+                        </div>
+                    </div>
+
+                    <!-- Paleta de Color de Relleno Técnico (Swatches + Eyedropper) -->
+                    <div class="swatch-row" style="margin-top: 6px;">
+                        <span class="swatch-label">Color de Relleno T&eacute;cnico</span>
+                        <div class="swatch-group">
+                            <button type="button" class="swatch-btn-con-fill active" data-color="#FFFFFF" style="background-color: #FFFFFF;" title="Blanco (Neutro)"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#10B981" style="background-color: #10B981;" title="Verde Esmeralda"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#00E676" style="background-color: #00E676;" title="Verde Ne&oacute;n"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#00C8FF" style="background-color: #00C8FF;" title="Cian T&eacute;cnico"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#FF007F" style="background-color: #FF007F;" title="Magenta"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#3B82F6" style="background-color: #3B82F6;" title="Azul El&eacute;ctrico"></button>
+                            <button type="button" class="swatch-btn-con-fill" data-color="#1A1A1A" style="background-color: #1A1A1A;" title="Negro Grafito"></button>
+                            <button type="button" class="color-picker-btn" id="btn-toggle-color-picker-con-fill" title="Color de relleno personalizado">
+                                <svg class="color-picker-icon-svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12c0 3.8 3.1 7 7 7h1.5c.8 0 1.5.7 1.5 1.5 0 .4-.2.8-.4 1.1-.3.3-.4.7-.4 1.1 0 .8.7 1.5 1.5 1.5 5.5 0 10-4.5 10-10C22 6.5 17.5 2 12 2z"/>
+                                    <circle cx="7.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+                                    <circle cx="16.5" cy="11.5" r="1.2" fill="currentColor"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Popover de Color para Relleno de Construcción -->
+                    <div class="color-popover" id="color-popover-con-fill" style="display: none;">
+                        <div class="color-popover-header">
+                            <span class="color-popover-title">Color de Relleno T&eacute;cnico</span>
+                            <button type="button" class="color-popover-close" id="btn-close-color-popover-con-fill" title="Cerrar">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="color-tools-row">
+                            <button type="button" class="color-eyedropper-btn" id="btn-eyedropper-con-fill" title="Cuentagotas (Muestrear color de relleno)">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 2l4 4L7 17H3v-4L14 2z"/>
+                                    <path d="M14 6l4 4"/>
+                                    <line x1="2" y1="22" x2="5" y2="19"/>
+                                </svg>
+                            </button>
+                            <div class="color-current-preview" id="color-current-preview-con-fill" style="background-color: #FFFFFF;"></div>
+                            <div class="color-hex-wrapper">
+                                <span class="color-hex-prefix">#</span>
+                                <input type="text" class="color-hex-input" id="input-hex-val-con-fill" value="FFFFFF" maxlength="6" spellcheck="false">
+                            </div>
+                            <button type="button" class="btn-apply-color" id="btn-apply-color-con-fill">OK</button>
+                        </div>
+                    </div>
+
+                    <!-- Sliders Anatómicos y Técnicos en Cuadrícula 2x3 -->
+                    <div class="con-sliders-grid-2">
+                        <!-- Fila 1: Tamaño de Anclas y Tamaño de Manejadores (Lado a lado) -->
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Tamaño de Anclas">
+                                <span>Anclas (pt)</span>
+                                <span class="slider-value" id="val-con-anchor-size">4.0 pt</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-anchor-size" min="2" max="10" value="4" step="0.5">
+                        </div>
+
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Tamaño de Manejadores">
+                                <span>Manejadores (pt)</span>
+                                <span class="slider-value" id="val-con-handle-size">3.0 pt</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-handle-size" min="1.5" max="8.0" value="3.0" step="0.5">
+                        </div>
+
+                        <!-- Fila 2: Grosor de Trazo y Extensión de Manejadores (Lado a lado) -->
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Grosor de Trazos Técnicos">
+                                <span>Grosor Trazo (pt)</span>
+                                <span class="slider-value" id="val-con-stroke-w">0.50 pt</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-stroke-w" min="0.1" max="2.0" value="0.5" step="0.05">
+                        </div>
+
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Extensión de Manejadores">
+                                <span>Extensi&oacute;n Man. (x)</span>
+                                <span class="slider-value" id="val-con-handle-scale">1.0x</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-handle-scale" min="1.0" max="2.5" value="1.0" step="0.1">
+                        </div>
+
+                        <!-- Fila 3: Opacidad de Guías y Relleno Fantasma (Lado a lado) -->
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Opacidad de Guías y Trazos">
+                                <span>Opacidad (%)</span>
+                                <span class="slider-value" id="val-con-stroke-op">100 %</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-stroke-op" min="10" max="100" value="100" step="5">
+                        </div>
+
+                        <div class="slider-row">
+                            <div class="slider-labels" title="Relleno Fantasma / Ghost Fill">
+                                <span>Fantasma (%)</span>
+                                <span class="slider-value" id="val-con-ghost-op">0 %</span>
+                            </div>
+                            <input type="range" class="range-slider" id="slider-con-ghost-op" min="0" max="30" value="0" step="1">
+                        </div>
+                    </div>
+
+                    <!-- Toggles Avanzados de Construcción -->
+                    <div class="toggle-row">
+                        <span class="toggle-label">Reemplazar construcci&oacute;n previa</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-con-clear-prev" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span class="toggle-label">Convertir en Gu&iacute;as de Illustrator</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-con-as-guides">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span class="toggle-label">Bloquear capa al finalizar</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-con-lock">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="toggle-row">
+                        <span class="toggle-label">Generar elementos agrupados por separado</span>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-con-separate-layers" checked>
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción de Construcción (Patrón Visual homologado con Base) -->
+                <div class="card-actions con-card-actions">
+                    <div class="con-btn-row-split">
+                        <button class="btn-make-guides" id="btn-con-clear-all" title="Eliminar capas de construcción">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                <line x1="10" y1="11" x2="10" y2="17"/>
+                                <line x1="14" y1="11" x2="14" y2="17"/>
+                            </svg>
+                            <span>Limpiar Todo</span>
+                        </button>
+
+                        <button class="btn-make-guides" id="btn-con-clean" title="Limpiar guías y preservar trazados">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 20h9"/>
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                            </svg>
+                            <span>Limpiar</span>
+                        </button>
+                    </div>
+
+                    <button class="btn-generate" id="btn-con-finalize" title="Generar lámina de construcción sobre la selección">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/>
+                        </svg>
+                        <span>Finalizar</span>
+                    </button>
+                </div>
+
+                <!-- Enlace Inferior: Restablecer Por Defecto (homologado con Base) -->
+                <div class="card-footer-links" style="margin-top: 6px;">
+                    <button class="footer-link" id="btn-con-reset" title="Restablecer opciones de construcción por defecto">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                        <span>Por Defecto</span>
+                    </button>
+                </div>
+            </div>
         </main>
 
         <!-- Barra de Estado Discreta -->
@@ -364,12 +704,13 @@
 
         <!-- Copyright / Versión -->
         <footer class="app-copyright">
-            <span class="copyright-version">BITGRID PRO &bull; v0.3.0</span>
+            <span class="copyright-version">BITGRID PRO &bull; v0.4.0</span>
             <span class="copyright-text">&copy; 2026 BitGrid Pro. Todos los derechos reservados.</span>
         </footer>
     </div>
 
     <script src="./js/CSInterface.js"></script>
+    <script src="./js/construction.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

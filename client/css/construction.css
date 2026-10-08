@@ -1,0 +1,192 @@
+/* ==========================================================================
+   BitGrid Pro - Módulo de Construcción (Estilos Dedicados)
+   ========================================================================== */
+
+#view-construction-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeInCon 0.15s ease-out;
+}
+
+@keyframes fadeInCon {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 1. Sub-pestañas de Construcción: Elementos vs Personalizar */
+.construction-subtabs {
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid #282828;
+    padding-bottom: 6px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.con-subtab-btn {
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 2px;
+    position: relative;
+    transition: color 0.15s ease;
+}
+
+.con-subtab-btn:hover {
+    color: var(--text-main);
+}
+
+.con-subtab-btn.active {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.con-subtab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--green-primary);
+    border-radius: 1px;
+}
+
+/* 2. Cuadrícula de 8 Tarjetas de Construcción (4 columnas x 2 filas) */
+.con-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.con-card {
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-square);
+    padding: 8px 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    min-height: 58px;
+}
+
+.con-card:hover {
+    background-color: var(--bg-item-hover);
+    border-color: var(--border-hover);
+}
+
+.con-card.active {
+    background-color: rgba(16, 185, 129, 0.08);
+    border-color: var(--green-primary);
+}
+
+.con-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-gray);
+    transition: color 0.15s ease;
+}
+
+.con-card:hover .con-card-icon {
+    color: var(--text-main);
+}
+
+.con-card.active .con-card-icon {
+    color: var(--green-primary);
+}
+
+.con-card-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--text-gray);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.con-card:hover .con-card-label {
+    color: var(--text-main);
+}
+
+.con-card.active .con-card-label {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 3. Panel de Personalizar en Construcción */
+.con-customize-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-square);
+    padding: 10px;
+}
+
+/* 4. Botones de Acción de Construcción (Homologados al patrón visual de Base) */
+.con-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.con-btn-row-split {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.con-btn-row-split .btn-make-guides {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 11px;
+    gap: 6px;
+}
+
+/* 5. Cuadrícula de Sliders de 2 Columnas (Anclas al lado de Manejadores, etc.) */
+.con-sliders-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+}
+
+.con-sliders-grid-2 .slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.con-sliders-grid-2 .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9.5px;
+    color: var(--text-gray);
+}
+
+.con-sliders-grid-2 .slider-labels span:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 68%;
+}
+
+.con-sliders-grid-2 .slider-value {
+    font-size: 9.5px;
+    color: #ffffff;
+    font-weight: 600;
+}

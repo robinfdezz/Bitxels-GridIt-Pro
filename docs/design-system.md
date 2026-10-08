@@ -124,3 +124,29 @@ En BitGrid Pro no se utilizan elementos circulares (`50%` de radio) para micro-c
   - Representación: Tres círculos concéntricos escalonados en proporción de Fibonacci (`r: 2.5, 6, 9.5`) atravesados por una cruz central de construcción (`1.6px`), reflejando con exactitud 1:1 la figura que el motor de Illustrator genera en el lienzo.
 - **Hexagonal (`data-type="hexagon"`):**
   - Representación: Polígono hexagonal técnico (marcado como `.disabled-feature` al 20% de opacidad).
+
+---
+
+## 8. Componente Desplegable Personalizado (Custom Select Dropdown)
+Para evitar el menú emergente nativo del sistema operativo Windows y su característico resaltado azul (`#0078d7`), se estableció el componente **Custom Dropdown**:
+
+- **Clase base:** `.custom-dropdown`
+- **Disparador (`.custom-dropdown-trigger`):** Altura `26px`, fondo `#131316`, borde `1px solid rgba(255, 255, 255, 0.14)`, radio `5px`.
+- **Flecha Chevron:** Vector SVG que rota fluidamente 180° con transición `cubic-bezier(0.16, 1, 0.3, 1)`.
+- **Menú Flotante (`.custom-dropdown-menu`):** Fondo `#161619`, borde `rgba(255, 255, 255, 0.16)`, radio `6px`, sombra `0 8px 24px rgba(0,0,0,0.75)`.
+- **Hover de opciones:** Fondo `#232328` con texto blanco puro (cero tonos azules).
+- **Opción activa:** Fondo `rgba(16, 185, 129, 0.14)`, texto esmeralda `#10B981`, peso `600` e icono checkmark vectorial.
+- **Herencia:** Cualquier `<select class="custom-select">` es transformado automáticamente por `initCustomDropdowns()`.
+
+---
+
+## 9. Controles Numéricos y Stepper Universal
+- **Tipografía de campos numéricos:** Fuente monospace tabular (`SF Mono`, `Segoe UI Mono`, `Roboto Mono`) centrada para claridad técnica.
+- **Interacción por hardware:** Soporte nativo para scroll con la ruedita del ratón (`wheel`) y flechas arriba/abajo en el teclado.
+- **Multiplicadores rápidos:**
+  - `Shift + Rueda/Flecha`: saltos de 10 en 10.
+  - `Alt + Rueda/Flecha`: micro-ajuste de 0.1.
+- **Fila Unificada en Personalizar (`.form-row-color-cols-rows`):**
+  - Disposición: Columnas y Filas a la izquierda, Color de Trazo a la derecha.
+  - Alineación superior estricta (`align-items: flex-start`).
+  - Nivelación matemática: Etiquetas fijas a `14px` de altura y controles a `24px` de altura, garantizando alineación horizontal perfecta.

@@ -10,7 +10,7 @@
 
   [![Adobe Illustrator](https://img.shields.io/badge/Adobe%20Illustrator-CC%202022--2026%2B-FF9A00?style=for-the-badge&logo=adobeillustrator&logoColor=white)](https://www.adobe.com/products/illustrator.html)
   [![CEP Runtime](https://img.shields.io/badge/CEP%20Runtime-9.0--12.0-00C8FF?style=for-the-badge)](https://github.com/Adobe-CEP)
-  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.3.0-10b981?style=for-the-badge)](CHANGELOG.md)
+  [![Version](https://img.shields.io/badge/Versi%C3%B3n-v0.4.0-10b981?style=for-the-badge)](CHANGELOG.md)
   [![Licencia](https://img.shields.io/badge/Licencia-GPL--3.0-10b981?style=for-the-badge)](LICENSE)
   [![Platform](https://img.shields.io/badge/Plataforma-Windows%20%7C%20macOS-gray?style=for-the-badge)](https://github.com/robinfdezz/Bitxels-GridIt-Pro)
 
